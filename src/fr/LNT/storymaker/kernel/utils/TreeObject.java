@@ -1,6 +1,6 @@
 package fr.LNT.storymaker.kernel.utils;
 
-public class TreeObject {
+public abstract class TreeObject {
 	
 	protected NodeObject current_node;
 	

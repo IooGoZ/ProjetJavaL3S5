@@ -1,10 +1,11 @@
 package fr.LNT.storymaker.kernel.utils;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Dialog extends TreeObject {
 
-	private static final Scanner sc = new Scanner(System.in);
+	private static Scanner sc = new Scanner(System.in);
 	
 	public Dialog(DialogNode starter_node) {
 		super(starter_node);
@@ -12,11 +13,17 @@ public class Dialog extends TreeObject {
 	
 	
 	public int getAnswers(int maxId) {
-		int res;
+		int res = DialogNode.ANSWER_MIN-1;
 		do {
-			System.out.println("Wait an answer : ");
-			res = sc.nextInt();
-			System.out.println(res);
+			try {
+				System.out.println("Wait an answer : ");
+				res = sc.nextInt();
+				System.out.println(res);
+			} catch (InputMismatchException  e) {
+				System.out.println("Bad answer !");
+				res = DialogNode.ANSWER_MIN-1;
+				sc.reset();
+			}
 		} while (res < DialogNode.ANSWER_MIN || res > maxId+DialogNode.ANSWER_MIN);
 		return res;
 	}

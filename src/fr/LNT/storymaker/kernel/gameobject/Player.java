@@ -10,5 +10,7 @@ public class Player {
 	private List<Character> followers;
 	private int health;
 	private String name;
+	
+	
 
 }

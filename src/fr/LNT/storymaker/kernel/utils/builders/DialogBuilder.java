@@ -7,7 +7,6 @@ import java.util.List;
 import fr.LNT.storymaker.kernel.utils.Dialog;
 import fr.LNT.storymaker.kernel.utils.DialogNode;
 import fr.LNT.storymaker.kernel.utils.NodeObject;
-import fr.LNT.storymaker.kernel.utils.TreeObject;
 
 public class DialogBuilder extends TreeBuilder {
 
@@ -28,24 +27,6 @@ public class DialogBuilder extends TreeBuilder {
 		id2text.put(id, text);
 		id2answers.put(id, answers);
 		id2command.put(id, command);
-	}
-	
-	@Deprecated
-	@Override
-	public void createBilink(Object obj1, Object obj2) {
-		return;
-	}
-	
-	@Deprecated
-	@Override
-	public void createUnilink(Object obj1, Object obj2) {
-		return;
-	}
-	
-	@Deprecated
-	@Override
-	public TreeObject build() {
-		return null;
 	}
 	
 	public Dialog buildDialog() {
