@@ -1,14 +1,23 @@
-package fr.LNT.storymaker.kernel.story;
-import java.util.List;
+package fr.LNT.storymaker.kernel.gameobject;
 
-import fr.LNT.storymaker.kernel.gameobject.Character;
-import fr.LNT.storymaker.kernel.gameobject.Door;
+import java.util.HashMap;
 
-public class Location {
+import fr.LNT.storymaker.kernel.story.Location;
+import fr.LNT.storymaker.kernel.utils.Dialog;
 
-	private String name;
-	private String description;
-	private List<Door> exits;
-	private List<Character> characters;
-
+public class Character {
+	
+	private final String name;
+	private Location room; 
+	private HashMap <Integer, Dialog> dialog;
+	
+	public Character(String n, Location r, HashMap<Integer, Dialog> d) 
+	{
+		this.name = n;
+		this.room = r;
+		this.dialog = d;
+	}
+	
+	
+	
 }
