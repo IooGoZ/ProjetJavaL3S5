@@ -2,8 +2,6 @@ package fr.LNT.storymaker.kernel.gameobject;
 
 import java.util.List;
 
-import fr.LNT.storymaker.kernel.story.Location;
-
 public class ClosedDoor extends Door{
 	private Item key;
 	private Boolean open;
