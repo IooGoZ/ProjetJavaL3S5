@@ -1,6 +1,5 @@
 package fr.LNT.storymaker.kernel.utils;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Dialog extends TreeObject {
@@ -17,12 +16,9 @@ public class Dialog extends TreeObject {
 		do {
 			try {
 				System.out.println("Wait an answer : ");
-				res = sc.nextInt();
-				System.out.println(res);
-			} catch (InputMismatchException  e) {
-				System.out.println("Bad answer !");
-				res = DialogNode.ANSWER_MIN-1;
-				sc.reset();
+				res = Integer.parseInt(sc.nextLine());
+			} catch (NumberFormatException  e) {
+				System.out.println("Wrong answer.");
 			}
 		} while (res < DialogNode.ANSWER_MIN || res > maxId+DialogNode.ANSWER_MIN);
 		return res;

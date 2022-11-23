@@ -2,17 +2,20 @@ package fr.LNT.storymaker.kernel.gameobject;
 
 import java.util.List;
 
+import fr.LNT.storymaker.kernel.Player;
+import fr.LNT.storymaker.kernel.story.Location;
+
 public class ClosedDoor extends Door{
-	private Item key;
-	private Boolean open;
+	private final Item key;
+	private boolean open = false;
 	
-	public ClosedDoor(Location from, Location to) {
+	public ClosedDoor(Location from, Location to, Item key) {
 		super(from, to);
-		// TODO Auto-generated constructor stub
+		this.key = key;
 	}
 	
 	@Override
-	public Boolean isOpen()
+	public boolean isOpen()
 	{
 		return this.open;
 	}

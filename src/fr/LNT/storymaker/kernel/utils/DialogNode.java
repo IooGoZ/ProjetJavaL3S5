@@ -7,7 +7,7 @@ import java.util.List;
 public class DialogNode extends NodeObject {
 
 	private final String text;
-	private final LinkedHashMap<String, Integer> answers;
+	private final LinkedHashMap<String, String> answers;
 	private final String command;
 	
 	private static final String NEW_LINE = "\n";
@@ -16,7 +16,7 @@ public class DialogNode extends NodeObject {
 	
 	private static final int ANSWER_TO_CHILD_ERROR = -1;
 	
-	public DialogNode(Integer id, String text, LinkedHashMap<String, Integer> hashMap, String command) {
+	public DialogNode(String id, String text, LinkedHashMap<String, String> hashMap, String command) {
 		super(id);
 		
 		this.text = text;
@@ -28,8 +28,8 @@ public class DialogNode extends NodeObject {
 	
 	
 	public int answerToChild(int answer) {
-		List<Integer> answerTarget = new ArrayList<>(answers.values());
-		Integer child_id = answerTarget.get(answer - ANSWER_MIN);
+		List<String> answerTarget = new ArrayList<>(answers.values());
+		String child_id = answerTarget.get(answer - ANSWER_MIN);
 		
 		int i = 0;
 		for (NodeObject child : super.childrens) {
@@ -64,8 +64,8 @@ public class DialogNode extends NodeObject {
 	}
 	
 	@Override
-	public Integer getNodeValue() {
-		return (Integer) node_value;
+	public String getNodeValue() {
+		return (String) node_value;
 	}
 	
 	public void addChildren(DialogNode child) {

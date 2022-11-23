@@ -1,5 +1,7 @@
 package fr.LNT.storymaker.kernel.gameobject;
 
+import fr.LNT.storymaker.kernel.story.Location;
+
 public class Door {
 	private Location from;
 	private Location to;
@@ -10,7 +12,7 @@ public class Door {
 		this.to = to;
 	}
 	
-	public Boolean isOpen() {
+	public boolean isOpen() {
 		return true;
 	}
 	

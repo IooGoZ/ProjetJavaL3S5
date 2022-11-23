@@ -1,0 +1,118 @@
+<!--Game-->
+<!ELEMENT game 
+    (script, map, items-list, characters-list)
+>
+<!ATTLIST game 
+    name CDATA #REQUIRED
+>
+
+
+<!--Script-->
+<!ELEMENT script 
+    (script-node+)
+>
+<!ATTLIST script 
+    begin CDATA #REQUIRED
+>
+
+<!ELEMENT script-node 
+    (child*)
+>
+<!ATTLIST script-node  
+    id ID #REQUIRED
+>
+
+<!ELEMENT child EMPTY>
+<!ATTLIST child 
+    child-id IDREF #REQUIRED
+>
+
+
+<!--Map-->
+<!ELEMENT map 
+    (location+)
+>
+<!ATTLIST map 
+    begin CDATA #REQUIRED
+>
+
+<!ELEMENT location 
+    (name, desc, door*)
+>
+<!ATTLIST location 
+    id ID #REQUIRED
+>
+
+<!ELEMENT door EMPTY>
+<!ATTLIST door 
+    id ID #REQUIRED
+    to CDATA #REQUIRED
+    key CDATA #IMPLIED
+>
+
+
+<!--Items List-->
+<!ELEMENT items-list
+ (item*)
+>
+
+<!ELEMENT item
+ (name, desc)
+>
+<!ATTLIST item 
+    id ID #REQUIRED
+>
+
+
+<!--Characters list-->
+<!ELEMENT characters-list
+    (character*)
+>
+
+<!ELEMENT character 
+    (name, desc, dialog*)
+>
+<!ATTLIST character 
+    id ID #REQUIRED
+    location CDATA #REQUIRED
+    available IDREFS #IMPLIED
+>
+
+<!--Dialog-->
+<!ELEMENT dialog
+    (dialog-node*)
+>
+<!ATTLIST dialog 
+    id ID #REQUIRED
+    begin CDATA #REQUIRED
+    available IDREFS #IMPLIED
+>
+
+<!ELEMENT dialog-node
+    (text, answer*)
+>
+<!ATTLIST dialog-node 
+    id ID #REQUIRED
+    execute CDATA #IMPLIED
+>
+
+<!ELEMENT answer
+    (#PCDATA)
+>
+<!ATTLIST answer 
+    redirect IDREF #IMPLIED
+>
+
+
+<!--Global-->
+<!ELEMENT name
+    (#PCDATA)
+>
+
+<!ELEMENT desc
+    (#PCDATA)
+>
+
+<!ELEMENT text
+    (#PCDATA)
+>

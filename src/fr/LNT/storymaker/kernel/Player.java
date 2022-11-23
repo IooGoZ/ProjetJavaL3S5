@@ -1,5 +1,9 @@
-package fr.LNT.storymaker.kernel.gameobject;
+package fr.LNT.storymaker.kernel;
 import java.util.List;
+
+import fr.LNT.storymaker.kernel.gameobject.Door;
+import fr.LNT.storymaker.kernel.gameobject.Item;
+import fr.LNT.storymaker.kernel.story.Location;
 
 public class Player {
 

@@ -10,11 +10,11 @@ import fr.LNT.storymaker.kernel.utils.NodeObject;
 
 public class DialogBuilder extends TreeBuilder {
 
-	private HashMap<Integer, String> id2text = new HashMap<>();
-	private HashMap<Integer, String> id2command = new HashMap<>();
-	private HashMap<Integer, LinkedHashMap<String, Integer>> id2answers = new HashMap<>();
+	private HashMap<String, String> id2text = new HashMap<>();
+	private HashMap<String, String> id2command = new HashMap<>();
+	private HashMap<String, LinkedHashMap<String, String>> id2answers = new HashMap<>();
 	
-	public DialogBuilder(Integer id, String text, LinkedHashMap<String, Integer> answers, String command) {
+	public DialogBuilder(String id, String text, LinkedHashMap<String, String> answers, String command) {
 		super(id);
 		id2text.put(id, text);
 		id2answers.put(id, answers);
@@ -22,7 +22,7 @@ public class DialogBuilder extends TreeBuilder {
 	}
 	
 	
-	public void addNode(Integer id, String text, LinkedHashMap<String, Integer> answers, String command) {
+	public void addNode(String id, String text, LinkedHashMap<String, String> answers, String command) {
 		super.addNode(id);
 		id2text.put(id, text);
 		id2answers.put(id, answers);
@@ -32,16 +32,16 @@ public class DialogBuilder extends TreeBuilder {
 	public Dialog buildDialog() {
 		HashMap<Object, NodeObject> obj2node = new HashMap<>();
 		
-		for (Integer id : id2answers.keySet()) {
-			HashMap<String, Integer> answers = id2answers.get(id);
+		for (String id : id2answers.keySet()) {
+			HashMap<String, String> answers = id2answers.get(id);
 			for (String answer : answers.keySet()) {
-				Integer child_id = answers.get(answer);
-				if (child_id >= 0) super.createUnilink(id, child_id);
+				String child_id = answers.get(answer);
+				if (child_id != null) super.createUnilink(id, child_id);
 			}
 		}
 		
 		for (Object obj : super.obj2lst.keySet()) {
-			Integer id = (Integer) obj;
+			String id = (String) obj;
 			obj2node.put(id, new DialogNode(id, id2text.get(id), id2answers.get(id), id2command.get(id)));
 		}
 		

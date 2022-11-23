@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE game SYSTEM "game.dtd">
+<game name="Test adventure">
+    <script begin="">
+        <script-node id="">
+            <child child-id=""/>
+        </script-node>
+    </script>
+    <map begin="">
+        <location id="">
+            <name></name>
+            <desc></desc>
+            <door id="" to=""/>
+        </location>
+    </map>
+    <items-list>
+        <item id="">
+            <name></name>
+            <desc></desc>
+        </item>
+    </items-list>
+    <characters-list>
+        <character id="" location="">
+            <name></name>
+            <desc></desc>
+            <dialog id="" begin="">
+                <dialog-node id="test">
+                    <text></text>
+                    <answer></answer>
+                </dialog-node>
+            </dialog>
+        </character>
+    </characters-list>
+</game>
