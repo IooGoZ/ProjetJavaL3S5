@@ -2,9 +2,12 @@ package fr.LNT.storymaker.kernel.utils;
 
 import java.util.Scanner;
 
-public class Dialog extends TreeObject {
+import fr.LNT.storymaker.kernel.Game;
+import fr.LNT.storymaker.kernel.commands.Sender;
 
-	private static Scanner sc = new Scanner(System.in);
+public class Dialog extends TreeObject implements Sender{
+
+	private static final Scanner sc = Game.stdinScanner;
 	
 	public Dialog(DialogNode starter_node) {
 		super(starter_node);

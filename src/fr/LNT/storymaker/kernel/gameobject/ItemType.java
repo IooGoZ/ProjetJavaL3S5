@@ -1,6 +1,6 @@
 package fr.LNT.storymaker.kernel.gameobject;
 
 public enum ItemType {
-	SHEET, HEALTH_PTS;
+	BASIC, KEY, HEALTH_PTS;
 
 }

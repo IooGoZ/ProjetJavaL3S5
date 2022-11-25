@@ -16,11 +16,11 @@ public class DialogNode extends NodeObject {
 	
 	private static final int ANSWER_TO_CHILD_ERROR = -1;
 	
-	public DialogNode(String id, String text, LinkedHashMap<String, String> hashMap, String command) {
+	public DialogNode(String id, String text, LinkedHashMap<String, String> answers, String command) {
 		super(id);
 		
 		this.text = text;
-		this.answers = hashMap;
+		this.answers = answers;
 		this.command = command;
 		
 	}
@@ -33,7 +33,7 @@ public class DialogNode extends NodeObject {
 		
 		int i = 0;
 		for (NodeObject child : super.childrens) {
-			if (child.getNodeValue() == child_id) return i;
+			if (child.getNodeValue().equals(child_id)) return i;
 			i++;
 		}
 		

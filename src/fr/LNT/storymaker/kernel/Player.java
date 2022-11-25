@@ -1,11 +1,12 @@
 package fr.LNT.storymaker.kernel;
 import java.util.List;
 
+import fr.LNT.storymaker.kernel.commands.Sender;
 import fr.LNT.storymaker.kernel.gameobject.Door;
 import fr.LNT.storymaker.kernel.gameobject.Item;
 import fr.LNT.storymaker.kernel.story.Location;
 
-public class Player {
+public class Player implements Sender {
 
 	private Location position;
 	private List<Item> inventory;
@@ -35,7 +36,7 @@ public class Player {
 	}
 	
 	public void gainHealth (int point) {
-		this.health -= point;
+		this.health += point;
 	}
 	
 	public void printStatePlayer() {

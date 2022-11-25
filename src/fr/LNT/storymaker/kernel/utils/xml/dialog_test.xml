@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE game SYSTEM "game.dtd">
+<dialog id="test-dialog" begin="test1">
+    <dialog-node id="test1">
+        <text>Bonjour, ça va ?</text>
+        <answer redirect="test2">ça va !</answer>
+        <answer redirect="test3">Bah non...</answer>
+    </dialog-node>
+    <dialog-node id="test2">
+        <text>Cool ! c'est bien ça !</text>
+        <answer redirect="test4">Effectivement</answer>
+        <answer redirect="test3">Bah non...</answer>
+    </dialog-node>
+    <dialog-node id="test3">
+        <text>Il faut être joyeux dans la vie !</text>
+        <answer redirect="test4">C'est vrai !</answer>
+        <answer redirect="test2">Bah non...</answer>
+    </dialog-node>
+    <dialog-node id="test4">
+        <text>Bah c'est bien...</text>
+        <answer>Oui...</answer>
+    </dialog-node>
+</dialog>

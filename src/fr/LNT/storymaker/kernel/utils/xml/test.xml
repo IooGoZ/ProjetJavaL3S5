@@ -2,8 +2,23 @@
 <!DOCTYPE game SYSTEM "game.dtd">
 <game name="Test adventure">
     <script begin="">
-        <script-node id="">
-            <child child-id=""/>
+        <script-node id="sc-1">
+            <child child-id="sc-2"/>
+            <child child-id="sc-4"/>
+        </script-node>
+        <script-node id="sc-2">
+            <child child-id="sc-1"/>
+            <child child-id="sc-3"/>
+            <child child-id="sc-4"/>
+        </script-node>
+        <script-node id="sc-3">
+            <child child-id="sc-2"/>
+            <child child-id="sc-1"/>
+        </script-node>
+        <script-node id="sc-4">
+            <child child-id="sc-1"/>
+            <child child-id="sc-2"/>
+            <child child-id="sc-3"/>
         </script-node>
     </script>
     <map begin="">
@@ -20,13 +35,28 @@
         </item>
     </items-list>
     <characters-list>
-        <character id="" location="">
+        <character id="Maria" location="">
             <name></name>
             <desc></desc>
-            <dialog id="" begin="">
-                <dialog-node id="test">
-                    <text></text>
-                    <answer></answer>
+            <dialog id="mar_dia_1" begin="test1">
+                <dialog-node id="mar_dia_1_1">
+                    <text>Bonjour, ça va ?</text>
+                    <answer redirect="test8">ça va !</answer>
+                    <answer redirect="test3">Bah non...</answer>
+                </dialog-node>
+                <dialog-node id="test2">
+                    <text>Cool ! c'est bien ça !</text>
+                    <answer redirect="test4">Effectivement</answer>
+                    <answer redirect="test3">Bah non...</answer>
+                </dialog-node>
+                <dialog-node id="test3">
+                    <text>Il faut être joyeux dans la vie !</text>
+                    <answer redirect="test4">C'est vrai !</answer>
+                    <answer redirect="test2">Bah non...</answer>
+                </dialog-node>
+                <dialog-node id="test4">
+                    <text>Bah c'est bien...</text>
+                    <answer>Oui...</answer>
                 </dialog-node>
             </dialog>
         </character>

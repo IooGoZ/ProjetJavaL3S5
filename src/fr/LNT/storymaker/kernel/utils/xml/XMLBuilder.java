@@ -30,12 +30,19 @@ public class XMLBuilder {
 		xml = db.parse(file);
 		xml.getDocumentElement().normalize();
 		
-		Node name = xml.getElementsByTagName("game").item(0).getAttributes().getNamedItem("tarte");
-		System.out.println(name);
-		
+		Node dialog = xml.getElementsByTagName("dialog").item(0);
+		try {
+			DialogXMLBuilder dxb = new DialogXMLBuilder(dialog);
+			dxb.buildDialog().execute();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public XMLBuilder() throws ParserConfigurationException, SAXException, IOException {
 		this(null);
 	}
+	
+	
 }
