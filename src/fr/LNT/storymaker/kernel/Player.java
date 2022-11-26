@@ -1,26 +1,23 @@
 package fr.LNT.storymaker.kernel;
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.LNT.storymaker.kernel.commands.Sender;
-import fr.LNT.storymaker.kernel.gameobject.Door;
 import fr.LNT.storymaker.kernel.gameobject.Item;
-import fr.LNT.storymaker.kernel.story.Location;
 
 public class Player implements Sender {
 
-	private Location position;
 	private List<Item> inventory;
 	private List<Character> followers;
 	private int health;
 	private final String name;
 	
 	
-	public Player(Location p, List<Item> i, List<Character> f, int h, String n){
-		this.position = p;
-		this.inventory = i;
-		this.followers = f;
-		this.health = h;
-		this.name = n;
+	public Player(List<Item> inventory, int health, String name){
+		this.inventory = inventory;
+		this.followers = new ArrayList<Character>();
+		this.health = health;
+		this.name = name;
 	}
 	
 	public void addInventory(Item item) {
@@ -64,12 +61,6 @@ public class Player implements Sender {
 		}
 	}
 	
-	public void move(Door door) {
-		if ((door.whereAmI() == this.position) && (door.isOpen())) {
-			this.position = door.whereDoIGo();
-		}
-	}
-	
 	
 	// ----- Getter ----- //
 	public List<Item> getInventory(){
@@ -78,10 +69,6 @@ public class Player implements Sender {
 	
 	public int getHealth() {
 		return this.health;
-	}
-	
-	public Location getPosition() {
-		return this.position;
 	}
 	
 	public String getName() {

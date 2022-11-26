@@ -5,21 +5,16 @@ import fr.LNT.storymaker.kernel.story.Location;
 public class Door {
 	private Location from;
 	private Location to;
-	
-	public Door (Location from, Location to)
-	{
+
+	public Door(Location from, Location to) {
 		this.from = from;
 		this.to = to;
 	}
-	
-	public boolean isOpen() {
-		return true;
-	}
-	
+
 	public Location whereDoIGo() {
 		return this.to;
 	}
-	
+
 	public Location whereAmI() {
 		return this.from;
 	}

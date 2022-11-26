@@ -1,5 +1,5 @@
 package fr.LNT.storymaker.kernel.commands;
 
 public interface Sender {
-	//Represent a command sender
+	// Represent a command sender
 }

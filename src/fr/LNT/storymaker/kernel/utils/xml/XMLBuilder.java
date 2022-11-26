@@ -15,13 +15,13 @@ import org.xml.sax.SAXException;
 //Inspiré par : https://mkyong.com/java/how-to-read-xml-file-in-java-dom-parser/
 
 public class XMLBuilder {
-	
+
 	private static final String DEFAULT_XML_PATHNAME = "test.xml";
-	
+
 	private Document xml;
-	
+
 	public XMLBuilder(File file) throws ParserConfigurationException, SAXException, IOException {
-		if (file==null) {
+		if (file == null) {
 			URL url = getClass().getResource(DEFAULT_XML_PATHNAME);
 			file = new File(url.getPath());
 		}
@@ -29,7 +29,7 @@ public class XMLBuilder {
 		DocumentBuilder db = dbf.newDocumentBuilder();
 		xml = db.parse(file);
 		xml.getDocumentElement().normalize();
-		
+
 		Node dialog = xml.getElementsByTagName("dialog").item(0);
 		try {
 			DialogXMLBuilder dxb = new DialogXMLBuilder(dialog);
@@ -39,10 +39,9 @@ public class XMLBuilder {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public XMLBuilder() throws ParserConfigurationException, SAXException, IOException {
 		this(null);
 	}
-	
-	
+
 }

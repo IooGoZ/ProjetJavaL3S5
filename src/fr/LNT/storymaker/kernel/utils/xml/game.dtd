@@ -37,7 +37,7 @@
 >
 
 <!ELEMENT location 
-    (name, desc, door*)
+    (name, text*, desc, door*)
 >
 <!ATTLIST location 
     id ID #REQUIRED
