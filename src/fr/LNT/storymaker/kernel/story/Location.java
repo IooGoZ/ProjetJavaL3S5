@@ -14,7 +14,7 @@ public class Location {
 	private final List<Character> characters;
 	private final String text;
 	
-	private List<Item> item; // NULL ?-------------------------------------------
+	private List<Item> items; // NULL ?------------------------------------------- non
 	
 
 	private boolean isVisited = false;
@@ -56,7 +56,63 @@ public class Location {
 	}
 
 	public boolean hasItem() {
-		return this.item.isEmpty();
+		return this.items.isEmpty();
+	}
+
+
+	// --- A améliorer sans doute --- //
+	public boolean doesDoorExist(String direction)
+	{
+		int i = 0;
+		boolean b = false;
+		while (b == false && i < this.exits.size())
+		{
+			b = (direction == this.exits.get(i).whereDoIGo().getName());
+			i++;
+		}
+		return b;
+	}
+
+	public Door getDoor(String direction)
+	{
+			int i = 0;
+			boolean b = false;
+			while (b == false && i < this.exits.size())
+			{
+				b = (direction == this.exits.get(i).whereDoIGo().getName());
+				i++;
+			}
+			return this.exits.get(i);
+	}
+
+	public boolean doesItemExist(String name)
+	{
+		int i = 0;
+		boolean b = false;
+		while (b == false && i < this.items.size())
+		{
+			b = (name == this.items.get(i).getName());
+			i++;
+		}
+		return b;
+	}
+
+	public String getItemDescription(String direction)
+	{
+			int i = 0;
+			boolean b = false;
+			while (b == false && i < this.exits.size())
+			{
+				b = (direction == this.items.get(i).getName());
+				i++;
+			}
+			return this.items.get(i).getDesc();
+	}
+
+
+	public void printDoors()
+	{
+		this.exits.forEach(exit -> System.out.println("From : " + exit.whereAmI() + " to : " + exit.whereDoIGo()));
 	}
 
 	// ---- Getter ---- //
@@ -77,7 +133,7 @@ public class Location {
 	}
 
 	public List<Item> getItem() {
-		return this.item;
+		return this.items;
 	}
 
 }

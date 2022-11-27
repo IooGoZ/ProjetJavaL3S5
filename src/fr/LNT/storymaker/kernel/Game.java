@@ -66,6 +66,16 @@ public class Game {
 	public String getCurrentScriptPosition() {
 		return script.getCurrentValue();
 	}
+
+	public Location getCurrentLocation()
+	{
+		return this.location;
+	}
+
+	public Player getCurrentPlayer()
+	{
+		return this.player;
+	}
 	
 	public boolean tryToUseDoor(Door door) {
 		if (location.getExits().contains(door)) {
