@@ -4,14 +4,11 @@ import fr.LNT.storymaker.kernel.story.Location;
 
 public class Look implements Command{
 
-    private Game game; 
     private Location location;
-
 
     public Look(Game game)
     {
-        this.game = game;
-        this.location = this.game.getCurrentLocation();
+        this.location = game.getCurrentLocation();
     }
 
     public void lookAround()
@@ -19,19 +16,25 @@ public class Look implements Command{
         System.out.println(this.location.getDescription());
     }
 
-    public void lookClosely(String[] names)
+    public boolean lookClosely(String[] names)
     {
-        for (int i = 0; i < names.length; i++)
-        {
-            if (names[i] == "Door")
+        for(String name : names){
+            if (name == "Door")
             {
                 this.location.printDoors();
+                return true;
             }
             else 
             {
-                
+                if (this.location.doesItemExist(name))
+                {
+                    this.location.getItemDescription(name);
+                    return true;
+                }
+                else return false;
             }
         }
+        return false;
     }
 
     public boolean execute(Sender sender, String cmdName, String[] args)
@@ -39,9 +42,9 @@ public class Look implements Command{
         if (args.length == 0)
         {
             lookAround();
+            return true;
         }
-        else lookClosely(args);
-        return true;
+        else return lookClosely(args);
     }
     
 }

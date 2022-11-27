@@ -99,16 +99,32 @@ public class Location {
 
 	public String getItemDescription(String direction)
 	{
-			int i = 0;
-			boolean b = false;
-			while (b == false && i < this.exits.size())
-			{
-				b = (direction == this.items.get(i).getName());
-				i++;
-			}
-			return this.items.get(i).getDesc();
+		int i = 0;
+		boolean b = false;
+		while (b == false && i < this.exits.size())
+		{
+			b = (direction == this.items.get(i).getName());
+			i++;
+		}
+		return this.items.get(i).getDesc();
 	}
 
+	public Item getItem(String direction)
+	{
+		int i = 0;
+		boolean b = false;
+		while (b == false && i < this.exits.size())
+		{
+			b = (direction == this.items.get(i).getName());
+			i++;
+		}
+		return this.items.get(i);
+	}
+
+	public void deleteItem(Item item)
+	{
+		this.items.remove(item);
+	}
 
 	public void printDoors()
 	{
@@ -132,7 +148,7 @@ public class Location {
 		return this.characters;
 	}
 
-	public List<Item> getItem() {
+	public List<Item> getItems() {
 		return this.items;
 	}
 
