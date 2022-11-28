@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE game SYSTEM "game.dtd">
 <game name="Test adventure">
-    <script begin="">
+    <script begin="sc-1">
         <script-node id="sc-1">
             <child child-id="sc-2"/>
             <child child-id="sc-4"/>
@@ -21,15 +21,15 @@
             <child child-id="sc-3"/>
         </script-node>
     </script>
-    <map begin="">
-        <location id="">
+    <map begin="loc1">
+        <location id="loc1">
             <name></name>
             <desc></desc>
-            <door id="" to=""/>
+            <door id="door1" to="loc1"/>
         </location>
     </map>
     <items-list>
-        <item id="">
+        <item id="key">
             <name></name>
             <desc></desc>
         </item>
@@ -39,9 +39,9 @@
             <name></name>
             <desc></desc>
             <dialog id="mar_dia_1" begin="test1">
-                <dialog-node id="mar_dia_1_1">
+                <dialog-node id="test1">
                     <text>Bonjour, ça va ?</text>
-                    <answer redirect="test8">ça va !</answer>
+                    <answer redirect="test2">ça va !</answer>
                     <answer redirect="test3">Bah non...</answer>
                 </dialog-node>
                 <dialog-node id="test2">

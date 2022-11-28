@@ -37,10 +37,11 @@
 >
 
 <!ELEMENT location 
-    (name, text*, desc, door*)
+    (name, text?, desc, door*)
 >
 <!ATTLIST location 
     id ID #REQUIRED
+    items IDREFS #IMPLIED
 >
 
 <!ELEMENT door EMPTY>
