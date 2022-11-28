@@ -4,8 +4,11 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 import fr.LNT.storymaker.kernel.commands.Command;
+import fr.LNT.storymaker.kernel.commands.CommandGo;
+import fr.LNT.storymaker.kernel.commands.CommandHelp;
+import fr.LNT.storymaker.kernel.commands.CommandLook;
 import fr.LNT.storymaker.kernel.commands.CommandParser;
-import fr.LNT.storymaker.kernel.commands.CommandTest;
+import fr.LNT.storymaker.kernel.commands.CommandTake;
 import fr.LNT.storymaker.kernel.gameobject.ClosedDoor;
 import fr.LNT.storymaker.kernel.gameobject.Door;
 import fr.LNT.storymaker.kernel.gameobject.Item;
@@ -17,10 +20,16 @@ public class Game {
 	public static final Scanner stdinScanner = new Scanner(System.in);
 	
 	private final String[] cmdName = {
-			"test"
+			"go",
+			"help",
+			"look",
+			"take"
 	};
 	private final Command[] cmds = {
-			new CommandTest(this)
+			new CommandGo(this),
+			new CommandHelp(),
+			new CommandLook(this),
+			new CommandTake(this)
 	};
 
 	private final String gameName;
@@ -65,6 +74,16 @@ public class Game {
 	
 	public String getCurrentScriptPosition() {
 		return script.getCurrentValue();
+	}
+
+	public Location getCurrentLocation()
+	{
+		return this.location;
+	}
+
+	public Player getCurrentPlayer()
+	{
+		return this.player;
 	}
 	
 	public boolean tryToUseDoor(Door door) {
