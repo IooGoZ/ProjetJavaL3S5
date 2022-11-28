@@ -2,13 +2,15 @@ package fr.LNT.storymaker.kernel.utils.xml;
 
 import java.util.LinkedHashMap;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import fr.LNT.storymaker.kernel.utils.Dialog;
 import fr.LNT.storymaker.kernel.utils.builders.DialogBuilder;
 
-public class DialogXMLBuilder {
+public class DialogXMLBuilder implements XMLBuilder {
 
 	private static final String DIALOG_NODE_NAME = "dialog";
 	private static final String DIALOG_BEGIN_ATTR_NAME = "begin";
@@ -22,26 +24,20 @@ public class DialogXMLBuilder {
 	private static final String ANSWER_EXECUTE_ATTR_NAME = "execute";
 
 	private static final String ID_ATTR_NAME = "id";
+	
+	private static final int FIRST_INDEX = 0;
+	
+	private final DialogBuilder builder;
+	private final Element begin_node;
 
-	private DialogBuilder builder;
-	private Node begin_node;
-
-	public DialogXMLBuilder(Node node) throws Exception {
+	public DialogXMLBuilder(Document xml, Node node) throws Exception {
 		if (node.getNodeName() != DIALOG_NODE_NAME)
 			throw new Exception();
-
+		
 		String begin_id = node.getAttributes().getNamedItem(DIALOG_BEGIN_ATTR_NAME).getTextContent();
-		for (int i = 0; i < node.getChildNodes().getLength(); i++) {
-			Node child = node.getChildNodes().item(i);
-			if (child.getNodeName() == DIALOGNODE_NODE_NAME) {
-				String child_id = child.getAttributes().getNamedItem(ID_ATTR_NAME).getTextContent();
-				if (child_id.equalsIgnoreCase(begin_id)) {
-					begin_node = child;
-					break;
-				}
-			}
-		}
-		builder = createDialogBuilder(begin_node);
+		this.begin_node = xml.getElementById(begin_id);
+		
+		this.builder = createDialogBuilder(begin_node);
 		for (int i = 0; i < node.getChildNodes().getLength(); i++) {
 			Node child = node.getChildNodes().item(i);
 			if (child.getNodeName() == DIALOGNODE_NODE_NAME) {
@@ -52,20 +48,15 @@ public class DialogXMLBuilder {
 		}
 	}
 
-	public Dialog buildDialog() {
+	@Override
+	public Dialog build() {
 		return builder.buildDialog();
 	}
 
-	private static DialogBuilder createDialogBuilder(Node node) {
+	private static DialogBuilder createDialogBuilder(Element node) {
 		String id = node.getAttributes().getNamedItem(ID_ATTR_NAME).getTextContent();
-		String text = null;
-		for (int i = 0; i < node.getChildNodes().getLength(); i++) {
-			Node child = node.getChildNodes().item(i);
-			if (child.getNodeName() == TEXT_NODE_NAME) {
-				text = child.getTextContent();
-				break;
-			}
-		}
+		String text = node.getElementsByTagName(TEXT_NODE_NAME).item(FIRST_INDEX).getTextContent();
+		
 		LinkedHashMap<String, String> answers = nodeToAnswers(node);
 		Node execute_attribute = node.getAttributes().getNamedItem(ANSWER_EXECUTE_ATTR_NAME);
 		String execute = null;

@@ -1,8 +1,10 @@
 package fr.LNT.storymaker.kernel.story;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.LNT.storymaker.kernel.gameobject.Character;
+import fr.LNT.storymaker.kernel.gameobject.ClosedDoor;
 import fr.LNT.storymaker.kernel.gameobject.Door;
 import fr.LNT.storymaker.kernel.gameobject.Item;
 
@@ -10,21 +12,19 @@ public class Location {
 
 	private final String name;
 	private final String description;
-	private final List<Door> exits;
-	private final List<Character> characters;
+	private final List<Door> exits = new ArrayList<>();
 	private final String text;
-	
-	private List<Item> items; // NULL ?------------------------------------------- non
+	private final List<Item> item;
+	private final List<Character> characters = new ArrayList<>();
 	
 
 	private boolean isVisited = false;
 	
-	public Location(String name, String desc, List<Door> door, List<Character> characters, String text) {
+	public Location(String name, String text, String desc, List<Item> item ) {
 		this.name = name;
 		this.description = desc;
-		this.exits = door;
-		this.characters = characters;
 		this.text = text;
+		this.item = item;
 	}
 
 	// ---- Method() ---- //
@@ -45,14 +45,6 @@ public class Location {
 		if (isVisited && text != null) {
 			System.out.println(text);
 		}
-	}
-	
-	public void addCharacter(Character c) {
-		this.characters.add(c);
-	}
-
-	public void removeCharacter(Character c) {
-		this.characters.remove(c);
 	}
 
 	public boolean hasItem() {
@@ -129,6 +121,20 @@ public class Location {
 	public void printDoors()
 	{
 		this.exits.forEach(exit -> System.out.println("From : " + exit.whereAmI() + " to : " + exit.whereDoIGo()));
+	}
+	
+	public void addExit(Location to, Item key) {
+		Door door;
+		if (key == null) {
+			door = new Door(this, to);
+		} else {
+			door = new ClosedDoor(this, to, key);
+		}
+		exits.add(door);
+	}
+	
+	public void addCharacter(Character character) {
+		characters.add(character);
 	}
 
 	// ---- Getter ---- //
