@@ -48,7 +48,79 @@ public class Location {
 	}
 
 	public boolean hasItem() {
-		return this.item.isEmpty();
+		return this.items.isEmpty();
+	}
+
+
+	// --- A améliorer sans doute --- //
+	public boolean doesDoorExist(String direction)
+	{
+		int i = 0;
+		boolean b = false;
+		while (b == false && i < this.exits.size())
+		{
+			b = (direction == this.exits.get(i).whereDoIGo().getName());
+			i++;
+		}
+		return b;
+	}
+
+	public Door getDoor(String direction)
+	{
+			int i = 0;
+			boolean b = false;
+			while (b == false && i < this.exits.size())
+			{
+				b = (direction == this.exits.get(i).whereDoIGo().getName());
+				i++;
+			}
+			return this.exits.get(i);
+	}
+
+	public boolean doesItemExist(String name)
+	{
+		int i = 0;
+		boolean b = false;
+		while (b == false && i < this.items.size())
+		{
+			b = (name == this.items.get(i).getName());
+			i++;
+		}
+		return b;
+	}
+
+	public String getItemDescription(String direction)
+	{
+		int i = 0;
+		boolean b = false;
+		while (b == false && i < this.exits.size())
+		{
+			b = (direction == this.items.get(i).getName());
+			i++;
+		}
+		return this.items.get(i).getDesc();
+	}
+
+	public Item getItem(String direction)
+	{
+		int i = 0;
+		boolean b = false;
+		while (b == false && i < this.exits.size())
+		{
+			b = (direction == this.items.get(i).getName());
+			i++;
+		}
+		return this.items.get(i);
+	}
+
+	public void deleteItem(Item item)
+	{
+		this.items.remove(item);
+	}
+
+	public void printDoors()
+	{
+		this.exits.forEach(exit -> System.out.println("From : " + exit.whereAmI() + " to : " + exit.whereDoIGo()));
 	}
 	
 	public void addExit(Location to, Item key) {
@@ -78,8 +150,12 @@ public class Location {
 		return this.exits;
 	}
 
-	public List<Item> getItem() {
-		return this.item;
+	public List<Character> getCharacters() {
+		return this.characters;
+	}
+
+	public List<Item> getItems() {
+		return this.items;
 	}
 
 }
