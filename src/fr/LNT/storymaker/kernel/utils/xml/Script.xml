@@ -12,6 +12,12 @@
     <map begin="">
         <location id="Amphitheater">
             <name>Amphitheater</name>
+            <text>Teacher : Blah blah blah... project... \n
+                Your eyes are fluttering. Fatigue inavdes you. Slowly, the room around you disappears. You must recognize that Jovo's classes have never been your strength....as evidenced by your grades in the last test. You feel your eyelids become heavier and heavier \n 
+                - BAM ! \n
+                You make up with a start ! Around you, the students have already started to leave the amphitheater. It was their noisy discussionsthat got you out of sleep. Very quickly, you are the only one still sitting. The teacher glares at you from his desk. He propably wants to go on a lunch break or maybe he noticed that you slept the entire lecture... You look away.
+                On your right, you notice a young long-haired girl who are smiling at you. On your left, there is a bearded boy hypnotised by his phone. The exit of the amphitheater are calling you : it's the freedom's door. You finally decide to get up.
+            </text>
             <desc>It is a place where the students assist to their lecture. It is also a cold place without any warmth.</desc>
             <door id="door1" to="Hall"/>
         </location>
@@ -73,60 +79,46 @@
 
     <characters-list> 
         <character id="Teacher" location="Amphitheater">
-            <name></name>
+            <name> Teacher of your project </name>
             <desc></desc>
-            <dialog id="T_dia1" begin="">
-                <dialog-node id="T1_1">
-                    <text>Teacher : Blah blah blah... project... \n
-                        Your eyes are fluttering. Fatigue inavdes you. Slowly, the room around you disappears. You must recognize that Jovo's classes have never been your strength....as evidenced by your grades in the last test. You feel your eyelids become heavier and heavier \n 
-                        - BAM ! \n
-                        You make up with a start ! Around you, the students have already started to leave the amphitheater. It was their noisy discussionsthat got you out of sleep. Very quickly, you are the only one still sitting. The teacher glares at you from his desk. He propably wants to go on a lunch break or maybe he noticed that you slept the entire lecture... You look away.
-                        On your right, you notice a young long-haired girl who are smiling at you. On your left, there is a bearded boy hypnotised by his phone. The exit of the amphitheater are calling you : it's the freedom's door. You finally decide to get up.
-                    </text>
-                </dialog-node>
 
-                <dialog-node id="T1_2">
+            <dialog id="T_dia1" begin="T1_1">
+                <dialog-node id="T1_1">
                     <text>The closer you get to him, the more nasty his look becomes...It's a bad idea. You turn around.</text>
                 </dialog-node>
-
-                <dialog-node id="T1_3">
+            </dialog>
+            <dialog id="T_dia2" begin="T2_1">
+                <dialog-node id="T2_1">
                     <text> Teacher : What about your papers, young man ! You have to listen in lecture. \n </text>
-                    <answer redirect="T1_4">Take the document.</answer>
+                    <answer redirect="T2_2">Take the document.</answer>
                 </dialog-node>
 
-                <dialog-node id="T1_4" execute="giveitem sheet">
+                <dialog-node id="T2_2" execute="giveitem sheet">
                     <text> You go down the amphitheater and take the document on the teacher's desk. It describes exactly the differents steps of the project : you are learning that you must find a partner. You immediately start to find one. The teacher leaves the amphitheater by grumbling something about the students these days... \n
                         You have one sheet in your possession and you need 4 to complete the project.
                     </text>
                 </dialog-node>
-
             </dialog>
-
-            <dialog id="T_dia2" begin="">
-                <dialog-node id="T2_1">
-                    <text></text>
-                </dialog-node>
-
-            </dialog>
-
 
         </character>
 
         <character id="Maria" location="Amphitheater">
-            <name></name>
-            <desc></desc>
-            <dialog id="M_dia1" begin="">
+            <name> Maria </name>
+            <desc> She is a beautiful long-haired girl and you are lucky, she is in the same class than you.</desc>
+            <dialog id="M_dia1" begin="M1_1">
                 <dialog-node id="M1_1">
                     <text> Long-haired girl : Hello ! My name is Maria. I saw that you were sleeping during class. You should go to see the teacher for the explanations that you missed.</text>
                 </dialog-node>
+            </dialog>
 
-                <dialog-node id="M1_2">
+            <dialog id="M_dia2" begin="M2_1">
+                <dialog-node id="M2_1">
                     <text> Maria : Do you have a pair for the project ? Otherwise we could get together if you want.</text>
-                    <answer redirect="M1_3"> Accept her proposition</answer>
-                    <answer redirect="M1_4"> Reject her proposition</answer>
+                    <answer redirect="M2_2"> Accept her proposition</answer>
+                    <answer redirect="M2_3"> Reject her proposition</answer>
                 </dialog-node>
 
-                <dialog-node id="M1_3">
+                <dialog-node id="M2_2">
                     <text> Maria smiles at you and you have the impression that the entire universe is contained in her dimples.\n 
                         She takes your hand. 
                         Maria : I am really happy that you want to work with me !
@@ -134,47 +126,41 @@
                     </text>
                 </dialog-node>
 
-                <dialog-node id="M1_4">
+                <dialog-node id="M2_3">
                     <text> You are alone and you read the project again... You absolutely need a partner.</text>
                 </dialog-node>
 
             </dialog>
 
-            <dialog id="M_dia2" begin="">
-                <dialog-node id="M2_1">
-                    <text> </text>
-                </dialog-node>
-
-            </dialog>
-
-
         </character>
 
         <character id="Zack" location="Amphitheater">
-            <name></name>
-            <desc></desc>
-            <dialog id="Z_dia1" begin="">
+            <name> Zack </name>
+            <desc> He is a bearded man in the same class than you.</desc>
+            <dialog id="Z_dia1" begin="Z1_1">
                 <dialog-node id="Z1_1">
                     <text> Bearded boy : Hi ! I am Zack. How was your nap ?</text>
                 </dialog-node>
+            </dialog>
 
-                <dialog-node id="Z1_2">
+            <dialog id="Z_dia2" begin="Z2_1">  
+                <dialog-node id="Z2_1">
                     <text> Do you want to be my partner for the project ?</text>
-                    <answer redirect="Z1_3">Accept his proposition</answer>
-                    <answer redirect="T1_">Reject his proposition</answer>
+                    <answer redirect="Z2_2">Accept his proposition</answer>
+                    <answer redirect="Z2_3">Reject his proposition</answer>
                 </dialog-node>
 
-                <dialog-node id="Z1_3">
+                <dialog-node id="Z2_2">
                     <text> You accept his proposition. He seems to be happy. Immediately, he goes to join his friends and disappears from your sight. You try to follow him but he was faster than you and you lost him. You will propably never see him again and accept his proposition was a terrible mistake. \n 
                     Suddenly, a young man approch you with a nice smile on his face.
                     Young man : You should not have accepted his proposition ! He won't do anything on the project and you are going to do everything by yourself. Come with me. Besides, I already did a similar project so it is going to be so easy. \n
                     - Oh... I am Maki by the way.
                     </text>
                     <answer redirect="Mk1_1"> Accept his proposition</answer>
-                    <answer redirect="Z1_4">Reject his proposition</answer>
+                    <answer redirect="Mk1_1"> Accept Mika's proposition</answer>
                 </dialog-node>
 
-                <dialog-node id="Z1_5">
+                <dialog-node id="Z2_3">
                     <text> You are alone and you read the project again... You absolutely need a partner.</text>
                 </dialog-node>
             </dialog>
@@ -184,57 +170,53 @@
         <character id="Maki" location="Amphitheater">
             <name></name>
             <desc></desc>
-            <dialog id="Mk_dia1" begin="">
+            <dialog id="Mk_dia1" begin="Mk1_1">
                 <dialog-node id="Mk1_1">
                     <text> You accept Maki's proposition and you are so happy to be free from Zack. Maki hugs you and tells you see you tomorrow. Here is someone who will make a reliable partner. Happy with yourself, you go home whistling.</text>
                 </dialog-node>
+            </dialog>
 
-                <dialog-node id="Mk1_2">
-                    <text> You accept Maki's proposition and you are so happy to be free from Zack. Maki hugs you and tells you see you tomorrow. Here is someone who will make a reliable partner. Happy with yourself, you go home whistling.</text>
-                </dialog-node>
-
-                <dialog-node id="Mk1_3">
+            <dialog id="Mk_dia2" begin="Mk2_1">
+                <dialog-node id="Mk2_1">
                     <text> You go out the amphitheater and you arrive in the hall of the building. A lots of students are chatting. You will find a partner here. As soon as this thought comes in your mind, a young man who seems to be a little bit too excited approch you : \n
                         Young man : Hey classmate. I was wondering, do you have a partner for the project ?.... Because if you do not have one then we can be together. \n
                         After his long and non-sense speech, your head is turning. You do not know if it is due to the smoke of his electronic cigarette or due to the lots of information he gave you. You finally understand that he want to be your project partner. 
                     </text>
-                    <answer redirect="M1_4"> Accept his proposition </answer>
-                    <answer redirect="M1_5"> Refuse his proposition </answer>
+                    <answer redirect="M2_2"> Accept his proposition </answer>
+                    <answer redirect="M2_3"> Refuse his proposition </answer>
                 </dialog-node>
 
-                <dialog-node id="Mk1_4">
+                <dialog-node id="M2_2">
                     <text> You accept Maki's proposition with a confused mind. After this, he leaves the building. You decide to go home to take a rest. After all, your mission to find a partner was a success so you can a little break. 
                     </text>
                 </dialog-node>
 
-                <dialog-node id="Mk1_5">
+                <dialog-node id="M2_3">
                     <text> What !? You do not want to be with me... Why ?...</text>
-                    <answer redirect="Mk1_6"> I already have a partner</answer>
-                    <answer redirect="Mk1_6"> I do not want to be with you</answer>
-                    <answer redirect="Mk1_4"> I was joking. Let's do the project together</answer>
+                    <answer redirect="Mk2_4"> I already have a partner</answer>
+                    <answer redirect="Mk2_4"> I do not want to be with you</answer>
+                    <answer redirect="M2_2"> I was joking. Let's do the project together</answer>
                 </dialog-node>
 
-                <dialog-node id="Mk1_6">
+                <dialog-node id="Mk2_4">
                     <text> Are you really sure you do not want to be with me ? </text>
-                    <answer redirect="Mk1_5"> Yes </answer>
+                    <answer redirect="M2_3"> Yes </answer>
                 </dialog-node>
-
-
-
             </dialog>
+
         </character>
 
         <character id="Woman" location="Secretary">
             <name></name>
             <desc></desc>
-            <dialog id="S_dia1" begin="">
+            <dialog id="S_dia1" begin="S1_1">
                 <dialog-node id="S1_1">
                     <text>You are going to enter in the secretary. What do you want to do ?</text>
                     <answer redirect="S1_2"> Knock at the door before entering </answer>
                     <answer redirect="S1_10"> Entering without knocking </answer>
                 </dialog-node>
 
-                <dialog-node id="S1_2">
+                <dialog-node id="S2_1">
                     <text> Hello. How are you ? </text>
                     <answer redirect="S1_3"> Great </answer>
                     <answer redirect="S1_4"> Not so good </answer>
@@ -254,17 +236,17 @@
                     <answer redirect="S1_6"> I just wanted to talk with you </answer>
                 </dialog-node>
 
-                <dialog-node id="S1_5">
-                    <text> I have several items in my possession. What do you need ?</text>
-                    <answer redirect="S1_7"> Health's points </answer>
-                    <answer redirect="S1_8"> Project's sheet </answer>
-                </dialog-node>
-
                 <dialog-node id="S1_6">
                     <text> Oh ! That's nice. You can come back whenever you need. 
                     </text>
                     <answer> Yes, sure </answer>
                     <answer> No, you won't see me again </answer>
+                </dialog-node>
+
+                <dialog-node id="S1_5">
+                    <text> I have several items in my possession. What do you need ?</text>
+                    <answer redirect="S1_7"> Health's points </answer>
+                    <answer redirect="S1_8"> Project's sheet </answer>
                 </dialog-node>
 
                 <dialog-node id="S1_7" execute="giveitem Hpts">
@@ -298,8 +280,6 @@
                     <answer redirect="S1_11"> Apologize yourself </answer>
                     <answer redirect="S1_12"> Do not apologize </answer>
                 </dialog-node>
-
-
 
             </dialog>
         </character>
