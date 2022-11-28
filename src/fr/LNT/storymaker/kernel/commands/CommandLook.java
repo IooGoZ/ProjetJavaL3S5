@@ -2,11 +2,11 @@ package fr.LNT.storymaker.kernel.commands;
 import fr.LNT.storymaker.kernel.Game;
 import fr.LNT.storymaker.kernel.story.Location;
 
-public class Look implements Command{
+public class CommandLook implements Command{
 
     private Location location;
 
-    public Look(Game game)
+    public CommandLook(Game game)
     {
         this.location = game.getCurrentLocation();
     }

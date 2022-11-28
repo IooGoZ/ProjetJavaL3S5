@@ -1,6 +1,6 @@
 package fr.LNT.storymaker.kernel.commands;
 
-public class Help implements Command{
+public class CommandHelp implements Command{
 
     public void help()
     {

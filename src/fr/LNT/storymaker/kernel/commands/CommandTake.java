@@ -4,12 +4,12 @@ import fr.LNT.storymaker.kernel.Player;
 import fr.LNT.storymaker.kernel.story.Location;
 import fr.LNT.storymaker.kernel.gameobject.Item;
 
-public class Take implements Command{
+public class CommandTake implements Command{
      
     private Player player;
     private Location location;
 
-    public Take(Game game){
+    public CommandTake(Game game){
         this.player = game.getCurrentPlayer();
         this.location = game.getCurrentLocation();
     }

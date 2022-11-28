@@ -3,12 +3,12 @@ import fr.LNT.storymaker.kernel.Game;
 import fr.LNT.storymaker.kernel.story.Location;
 
 
-public class Go implements Command{
+public class CommandGo implements Command{
 
     private Game game; 
     private Location location;
 
-    public Go (Game game){
+    public CommandGo (Game game){
         this.game = game;
         this.location = this.game.getCurrentLocation();
     }
