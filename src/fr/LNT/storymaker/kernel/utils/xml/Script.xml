@@ -224,14 +224,14 @@
             </dialog>
         </character>
 
-        <character id="Secretary" location="Secretary">
+        <character id="Woman" location="Secretary">
             <name></name>
             <desc></desc>
             <dialog id="S_dia1" begin="">
                 <dialog-node id="S1_1">
                     <text>You are going to enter in the secretary. What do you want to do ?</text>
                     <answer redirect="S1_2"> Knock at the door before entering </answer>
-                    <answer redirect=""> Entering first without knocking </answer>
+                    <answer redirect="S1_10"> Entering without knocking </answer>
                 </dialog-node>
 
                 <dialog-node id="S1_2">
@@ -267,13 +267,36 @@
                     <answer> No, you won't see me again </answer>
                 </dialog-node>
 
-                <dialog-node id="S1_7" execute="giveitem sheet">
+                <dialog-node id="S1_7" execute="giveitem Hpts">
                     <text> 
                         Secretary : As you ask politely, I give you these health's points. You will need them. \n
                         You receive 40 health's points. 
                     </text>
                     <answer> Thank you </answer>
-                    <answer> </answer>
+                </dialog-node>
+
+                <dialog-node id="S1_8" execute="giveitem sheet">
+                    <text> 
+                        Secretary : Oh I see. Why do you think I have a sheet for the project ? 
+                    </text>
+                    <answer> I heard it somewhere </answer>
+                    <answer> It was written on a paper</answer>
+                    <answer> It is just luck</answer>
+                </dialog-node>
+
+                <dialog-node id="S1_9">
+                    <text> 
+                        Secretary : Well, I do not know if I will give it to you... You need to assist to the class first and then I will give it to you. 
+                    </text>
+                    <answer> I heard it somewhere </answer>
+                </dialog-node>
+
+                <dialog-node id="S1_10">
+                    <text> 
+                        Secretary : What is these manners young man ! Do you really think that's a good behaviour ? I do not think so...
+                    </text>
+                    <answer redirect="S1_11"> Apologize yourself </answer>
+                    <answer redirect="S1_12"> Do not apologize </answer>
                 </dialog-node>
 
 
