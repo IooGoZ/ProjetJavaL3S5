@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE game SYSTEM "game.dtd">
 <game name="Project">
     <script begin="">
@@ -207,11 +207,11 @@
         </character>
 
         <character id="Woman" location="Secretary">
-            <name></name>
-            <desc></desc>
+            <name> Secretary </name>
+            <desc> She helps when she can the students...</desc>
             <dialog id="S_dia1" begin="S1_1">
                 <dialog-node id="S1_1">
-                    <text>You are going to enter in the secretary. What do you want to do ?</text>
+                    <text>You are going to enter in the secretary's office. What do you want to do ?</text>
                     <answer redirect="S1_2"> Knock at the door before entering </answer>
                     <answer redirect="S1_10"> Entering without knocking </answer>
                 </dialog-node>
@@ -270,7 +270,8 @@
                     <text> 
                         Secretary : Well, I do not know if I will give it to you... You need to assist to the class first and then I will give it to you. 
                     </text>
-                    <answer> I heard it somewhere </answer>
+                    <answer> Okay see you later </answer>
+							<answer> I do not want it </answer>
                 </dialog-node>
 
                 <dialog-node id="S1_10">
@@ -281,7 +282,53 @@
                     <answer redirect="S1_12"> Do not apologize </answer>
                 </dialog-node>
 
+					 <dialogue-node id="S1_11">
+							<text> You apologize for your disrespectful behaviour. The secretary seems to relax a little bit. \n 
+							Secretary : Hmm... tell me why are you here and maybe I will help you ...</text>
+							<answer redirect="S1_5"> I need something </answer>
+							<answer redirect="S1_6"> I just wanted to talk to you </answer>
+					 </dialogue-node>
+					
+					 <dialogue-node id="S1_11">
+							<text> You do not want to apologize yourself. The secretary grins, she seems angrier than before. You think she won't help you for anything and maybe you are right...
+							Secretary : First you come without knocking at the door and now you refuse to apologize for this. I won't give you what you want, come later !
+							</text>
+							<answer> Leave the office </answer>
+					 </dialogue-node>
+
             </dialog>
+
+				<dialog id="S_dia2" begin="S2_1">
+                <dialog-node id="S2_1">
+						<text> Maki, your project's partner talked about a mystery key. You are now looking at it. A rumor says that the key is in the secretary's office. You knock at her door. The door slowly opens but everything is dark inside. She is not inside... What do you want to do ? </text>
+						<answer redirect="S2_3"> Enter in the office </answer>
+						<answer redirect="S2_2"> Come back later </answer>
+					  </dialog-node>
+					
+					  <dialog-node id="S2_2"> 
+						<text> You are frightening to enter in her office without her consent. If Maki were you, he would probably enter but you are too pure for this. You will come back later... when she will be available. </text>
+					
+					  </dialog-node id="S2_3">
+						<text> You absolutely want this key and you know that it is in this room. So you have no choice. You quietly enter in the room and close the door behind you. The key could be everywhere and you do not know where to start. </text>
+						<answer redirect="S2_4"> Start with the desk </answer>
+						<answer redirect="S2_5"> Start with the drawer </answer>
+					  </dialog-node>
+					
+					  <dialog-node id="S2_4"> 
+						<text> You start with the desk but there is a lot of paper on it. It is really messy. You check every desk's *tiroirs*. Nothing... Suddenly, a shiny object take your sight. You bend over to have a better look and then with glistering eyes, you take delicately the key.  * get the key *</text>
+					  </dialog-nod>
+					
+					  <dialog-node id="S2_5"> 
+						<text> You start with the drawer. It contains thousand of books. Unfortunately your reseach seems unexisted... The only potential good things that you get was some private informations on your teachers... Maybe you could use them to get a bonus points on your project...</text>
+						<answer redirect="S2_6"> Now check the desk </asnwer>
+						<answer> Give up the key's research </asnwer>
+					  </dialog-nod>
+					
+					  <dialog-node id="S2_6">
+						<text> The desk is no messy that you do not know where to start... There is no key amount the paper. You check every desk's *tiroirs*. Nothing... Suddenly, a shiny object take your sight. You bend over to have a better look and then with glistering eyes, you take delicately the key.  * get the key *
+					  </dialog-node>
+					  
+				</dialog>
         </character>
         
 
