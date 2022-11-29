@@ -14,8 +14,7 @@ public class Debug {
 		try {
 			GameXMLBuilder game_builder = new GameXMLBuilder();
 			Game game = game_builder.build();
-			
-			System.out.println(game);
+			game.runGame();
 			
 		} catch (ParserConfigurationException | SAXException | IOException e) {
 			System.err.println("Le jeu ne peut pas être lue.");

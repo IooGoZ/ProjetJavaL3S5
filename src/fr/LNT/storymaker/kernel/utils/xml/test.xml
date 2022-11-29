@@ -24,11 +24,13 @@
     <map begin="loc1">
         <location id="loc1">
             <name>Piece 1</name>
+            <text>Bienvenue dans la piece 1</text>
             <desc>Une piece nulle</desc>
             <door id="door1" to="loc2"/>
         </location>
         <location id="loc2">
             <name>Piece 2</name>
+            <text>Bienvenue dans la piece 2</text>
             <desc>Une piece presque bien</desc>
             <door id="door2" to="loc1"/>
         </location>

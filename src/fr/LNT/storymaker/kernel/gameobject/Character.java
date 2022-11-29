@@ -30,6 +30,11 @@ public class Character {
 		room.addCharacter(this);
 	}
 
+	public boolean isAvailable(String script_id) {
+		
+		return available.contains(script_id) || available.size() == 0;
+	}
+	
 	public boolean isInside(Item item) {
 
 		int len = this.inventory.size();
@@ -57,7 +62,10 @@ public class Character {
 	}
 
 	public Dialog getCurrentDialog(String script_id) {
-		return script2dialog.get(script_id);
+		Dialog res = script2dialog.getOrDefault(script_id, null);
+		if (res == null)
+			res = script2dialog.getOrDefault(ALWAYS_AVAILABLE, null);
+		return res;
 	}
 
 	public List<Item> getInventory() {
@@ -66,5 +74,9 @@ public class Character {
 
 	public int getHealth() {
 		return health;
+	}
+
+	public String getDescription() {
+		return desc;
 	}
 }

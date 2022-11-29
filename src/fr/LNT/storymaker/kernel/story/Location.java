@@ -20,7 +20,7 @@ public class Location {
 
 	private boolean isVisited = false;
 	
-	public Location(String name, String text, String desc, List<Item> items ) {
+	public Location(String name, String text, String desc, List<Item> items) {
 		this.name = name;
 		this.description = desc;
 		this.text = text;
@@ -34,7 +34,7 @@ public class Location {
 		res += "Location's name : ";
 		res += this.name;
 		res += "\n";
-		res += "Location's description :";
+		res += "Location's description : ";
 		res += this.description;
 
 		return res;
@@ -42,8 +42,9 @@ public class Location {
 	}
 	
 	public void printTextIfAvailable() {
-		if (isVisited && text != null) {
+		if (!isVisited && text != null) {
 			System.out.println(text);
+			isVisited = true;
 		}
 	}
 
@@ -51,64 +52,70 @@ public class Location {
 		return this.items.isEmpty();
 	}
 
-
-	// --- A améliorer sans doute --- //
+	public List<String> getDoorsNames()
+	{
+		List<String> res = new ArrayList<>();
+		for (Door door : exits) {
+			res.add(door.whereDoIGo().getName());
+		}
+		return res;
+	}
+	
 	public boolean doesDoorExist(String direction)
 	{
-		int i = 0;
-		boolean b = false;
-		while (b == false && i < this.exits.size())
-		{
-			b = (direction == this.exits.get(i).whereDoIGo().getName());
-			i++;
+		for (int i = 0; i < this.exits.size(); i++) {
+		  if (direction.equalsIgnoreCase(this.exits.get(i).whereDoIGo().getName()))
+		    return true;
 		}
-		return b;
+		return false;
 	}
 
 	public Door getDoor(String direction)
 	{
-			int i = 0;
-			boolean b = false;
-			while (b == false && i < this.exits.size())
-			{
-				b = (direction == this.exits.get(i).whereDoIGo().getName());
-				i++;
-			}
-			return this.exits.get(i);
+		int i;
+		for (i = 0; i < this.exits.size(); i++) {
+		  if (direction.equalsIgnoreCase(this.exits.get(i).whereDoIGo().getName()))
+		    break;
+		}
+		return this.exits.get(i);
 	}
 
+	
+	public List<String> getItemsNames()
+	{
+		List<String> res = new ArrayList<>();
+		for (Item item : this.items) {
+			res.add(item.getName());
+		}
+		return res;
+	}
+	
 	public boolean doesItemExist(String name)
 	{
-		int i = 0;
-		boolean b = false;
-		while (b == false && i < this.items.size())
-		{
-			b = (name == this.items.get(i).getName());
-			i++;
+		int i;
+		for (i = 0; i < this.items.size(); i++) {
+			if (name.equalsIgnoreCase(this.items.get(i).getName()))
+				return true;
 		}
-		return b;
+		return false;
 	}
 
 	public String getItemDescription(String direction)
 	{
-		int i = 0;
-		boolean b = false;
-		while (b == false && i < this.exits.size())
-		{
-			b = (direction == this.items.get(i).getName());
-			i++;
+		int i;
+		for (i = 0; i < this.exits.size(); i++) {
+			if (name.equalsIgnoreCase(this.items.get(i).getName()))
+				break;
 		}
 		return this.items.get(i).getDesc();
 	}
 
 	public Item getItem(String direction)
 	{
-		int i = 0;
-		boolean b = false;
-		while (b == false && i < this.exits.size())
-		{
-			b = (direction == this.items.get(i).getName());
-			i++;
+		int i;
+		for (i = 0; i < this.exits.size(); i++) {
+			if (name.equalsIgnoreCase(this.items.get(i).getName()))
+				break;
 		}
 		return this.items.get(i);
 	}
@@ -120,7 +127,7 @@ public class Location {
 
 	public void printDoors()
 	{
-		this.exits.forEach(exit -> System.out.println("From : " + exit.whereAmI() + " to : " + exit.whereDoIGo()));
+		this.exits.forEach(exit -> System.out.println("From : " + exit.whereAmI() + "\nTo : " + exit.whereDoIGo() + "\n"));
 	}
 	
 	public void addExit(Location to, Item key) {
@@ -150,7 +157,11 @@ public class Location {
 		return this.exits;
 	}
 
-	public List<Character> getCharacters() {
+	public List<Character> getAvailableCharacters(String script_id) {
+		List<Character> res = new ArrayList<>();
+		for (Character character : characters)
+			if (character.isAvailable(script_id))
+				res.add(character);
 		return this.characters;
 	}
 

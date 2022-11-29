@@ -2,10 +2,13 @@ package fr.LNT.storymaker.kernel.utils.xml;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.StringReader;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -13,6 +16,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.xml.sax.EntityResolver;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import fr.LNT.storymaker.kernel.Game;
@@ -26,8 +31,10 @@ import fr.LNT.storymaker.kernel.gameobject.Character;
 
 public class GameXMLBuilder implements XMLBuilder {
 
-	private static final String DEFAULT_XML_PATHNAME = "test.xml";
-	
+	private static final String DEFAULT_XML_PATHNAME = "fr/LNT/storymaker/kernel/utils/xml/test.xml";
+	private static final String DEFAULT_DTD_NAME = "game.dtd";
+	private static final String DEFAULT_DTD_PATHNAME = "fr/LNT/storymaker/kernel/utils/xml/game.dtd";
+
 	private static final String GAME_NODE_NAME = "game";
 	private static final String NAME_ATTR_NAME = "name";
 	private static final int FIRST_INDEX = 0;
@@ -40,22 +47,39 @@ public class GameXMLBuilder implements XMLBuilder {
 	private final Node items_node;
 
 	public GameXMLBuilder(File file) throws ParserConfigurationException, SAXException, IOException {
-		if (file == null) {
-			URL url = getClass().getResource(DEFAULT_XML_PATHNAME);
-			file = new File(url.getPath());
-		}
+
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newDefaultInstance();
 		dbf.setValidating(true);
+
 		DocumentBuilder db = dbf.newDocumentBuilder();
-		xml = db.parse(file);
+
+		InputStream test = getClass().getClassLoader().getResourceAsStream(DEFAULT_DTD_PATHNAME);
+		db.setEntityResolver(new EntityResolver() {
+			@Override
+			public InputSource resolveEntity(String publicId, String systemId) throws SAXException, IOException {
+				if (systemId.contains(DEFAULT_DTD_NAME)) {
+					return new InputSource(test);
+				} else {
+					return null;
+				}
+			}
+		});
+
+		if (file == null) {
+			InputStream path = getClass().getClassLoader().getResourceAsStream(DEFAULT_XML_PATHNAME);
+			xml = db.parse(path);
+		} else
+			xml = db.parse(file);
+
 		xml.getDocumentElement().normalize();
 
 		Element game = (Element) xml.getElementsByTagName(GAME_NODE_NAME).item(FIRST_INDEX);
-		
-		this.game_name = game.getAttributes().getNamedItem(NAME_ATTR_NAME).getTextContent(); 
-		
+
+		this.game_name = game.getAttributes().getNamedItem(NAME_ATTR_NAME).getTextContent();
+
 		this.script_node = game.getElementsByTagName(ScriptXMLBuilder.SCRIPT_NODE_NAME).item(FIRST_INDEX);
-		this.characters_node = game.getElementsByTagName(CharactersXMLBuilder.CHARACTER_LIST_NODE_NAME).item(FIRST_INDEX);
+		this.characters_node = game.getElementsByTagName(CharactersXMLBuilder.CHARACTER_LIST_NODE_NAME)
+				.item(FIRST_INDEX);
 		this.map_node = game.getElementsByTagName(MapXMLBuilder.MAP_NODE_NAME).item(FIRST_INDEX);
 		this.items_node = game.getElementsByTagName(ItemsXMLBuilder.ITEMS_LIST_NODE_NAME).item(FIRST_INDEX);
 	}
@@ -66,12 +90,12 @@ public class GameXMLBuilder implements XMLBuilder {
 
 	@Override
 	public Game build() {
-		
+
 		Script script = null;
 		HashMap<String, Item> id2items = null;
 		Location first_location = null;
 		List<Character> characters;
-		
+
 		try {
 			ScriptXMLBuilder script_builder = new ScriptXMLBuilder(script_node);
 			script = script_builder.build();
@@ -80,8 +104,8 @@ public class GameXMLBuilder implements XMLBuilder {
 			MapXMLBuilder map_builder = new MapXMLBuilder(xml, map_node, id2items);
 			first_location = map_builder.build();
 			CharactersXMLBuilder characters_builder = new CharactersXMLBuilder(xml, characters_node, map_builder);
-			characters = characters_builder.build();	
-			
+			characters = characters_builder.build();
+
 		} catch (Exception e) {
 			System.err.println("La lecture du fichier XML a échouée.");
 			e.printStackTrace();

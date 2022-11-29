@@ -9,6 +9,7 @@ import fr.LNT.storymaker.kernel.commands.CommandHelp;
 import fr.LNT.storymaker.kernel.commands.CommandLook;
 import fr.LNT.storymaker.kernel.commands.CommandParser;
 import fr.LNT.storymaker.kernel.commands.CommandTake;
+import fr.LNT.storymaker.kernel.commands.CommandTalk;
 import fr.LNT.storymaker.kernel.commands.Sender;
 import fr.LNT.storymaker.kernel.gameobject.ClosedDoor;
 import fr.LNT.storymaker.kernel.gameobject.Door;
@@ -24,13 +25,15 @@ public class Game {
 			"go",
 			"help",
 			"look",
-			"take"
+			"take",
+			"talk"
 	};
 	private final Command[] cmds = {
 			new CommandGo(this),
 			new CommandHelp(),
 			new CommandLook(this),
-			new CommandTake(this)
+			new CommandTake(this),
+			new CommandTalk(this)
 	};
 
 	private final String gameName;
@@ -101,6 +104,7 @@ public class Game {
 						return false;
 			}
 			this.location = door.whereDoIGo();
+			location.printTextIfAvailable();
 			return true;
 		}
 		return false;
