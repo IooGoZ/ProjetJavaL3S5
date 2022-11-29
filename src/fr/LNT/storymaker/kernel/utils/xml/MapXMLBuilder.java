@@ -12,7 +12,7 @@ import fr.LNT.storymaker.kernel.story.Location;
 
 public class MapXMLBuilder implements XMLBuilder {
 	
-	private static final String MAP_NODE_NAME = "map";
+	public static final String MAP_NODE_NAME = "map";
 	private static final String MAP_BEGIN_ATTR_NAME = "begin";
 	private static final String LOCATION_NODE_NAME = "location";
 	private static final String NAME_NODE_NAME = "name";

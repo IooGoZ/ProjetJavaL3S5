@@ -9,6 +9,7 @@ import fr.LNT.storymaker.kernel.commands.CommandHelp;
 import fr.LNT.storymaker.kernel.commands.CommandLook;
 import fr.LNT.storymaker.kernel.commands.CommandParser;
 import fr.LNT.storymaker.kernel.commands.CommandTake;
+import fr.LNT.storymaker.kernel.commands.Sender;
 import fr.LNT.storymaker.kernel.gameobject.ClosedDoor;
 import fr.LNT.storymaker.kernel.gameobject.Door;
 import fr.LNT.storymaker.kernel.gameobject.Item;
@@ -59,12 +60,17 @@ public class Game {
 		}
 	}
 	
+	public boolean executeCommand(Sender sender, String cmd) {
+		return parser.parse(sender, cmd);
+	}
+	
 	public void runGame() {
-		System.out.println("Lancement de " + gameName);
+		System.out.println("Launching of " + gameName);
 		location.printTextIfAvailable();
 		while(!isFinished) {
 			String cmd = stdinScanner.nextLine();
-			parser.parse(player, cmd);
+			if (!parser.parse(player, cmd))
+				System.err.println("The command was not completed.");
 		}
 	}
 	

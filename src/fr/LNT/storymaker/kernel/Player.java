@@ -7,6 +7,9 @@ import fr.LNT.storymaker.kernel.gameobject.Item;
 
 public class Player implements Sender {
 
+	private static final String DEFAULT_NAME = "Player";
+	private static final int DEFAULT_HP = 100;
+	
 	private List<Item> inventory;
 	private List<Character> followers;
 	private int health;
@@ -18,6 +21,10 @@ public class Player implements Sender {
 		this.followers = new ArrayList<Character>();
 		this.health = health;
 		this.name = name;
+	}
+	
+	public Player() {
+		this(new ArrayList<>(), DEFAULT_HP, DEFAULT_NAME);
 	}
 	
 	public void addInventory(Item item) {

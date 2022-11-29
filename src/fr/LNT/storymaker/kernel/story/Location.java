@@ -14,17 +14,17 @@ public class Location {
 	private final String description;
 	private final List<Door> exits = new ArrayList<>();
 	private final String text;
-	private final List<Item> item;
+	private final List<Item> items;
 	private final List<Character> characters = new ArrayList<>();
 	
 
 	private boolean isVisited = false;
 	
-	public Location(String name, String text, String desc, List<Item> item ) {
+	public Location(String name, String text, String desc, List<Item> items ) {
 		this.name = name;
 		this.description = desc;
 		this.text = text;
-		this.item = item;
+		this.items = items;
 	}
 
 	// ---- Method() ---- //

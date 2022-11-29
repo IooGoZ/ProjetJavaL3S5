@@ -14,7 +14,7 @@ import fr.LNT.storymaker.kernel.gameobject.Character;
 
 public class CharactersXMLBuilder implements XMLBuilder {
 
-	private static final String CHARACTER_LIST_NODE_NAME = "characters-list";
+	public static final String CHARACTER_LIST_NODE_NAME = "characters-list";
 	private static final String CHARACTER_NODE_NAME = "character";
 	private static final String NAME_NODE_NAME = "name";
 	private static final String DESCRIPTION_NODE_NAME = "desc";

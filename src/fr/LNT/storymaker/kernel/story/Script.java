@@ -5,7 +5,7 @@ import fr.LNT.storymaker.kernel.utils.TreeObject;
 
 public class Script extends TreeObject {
 
-	protected Script(NodeObject starter_node) {
+	public Script(NodeObject starter_node) {
 		super(starter_node);
 	}
 

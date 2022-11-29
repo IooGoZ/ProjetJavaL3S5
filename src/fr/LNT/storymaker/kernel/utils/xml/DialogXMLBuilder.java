@@ -13,7 +13,7 @@ import fr.LNT.storymaker.kernel.utils.builders.DialogBuilder;
 public class DialogXMLBuilder implements XMLBuilder {
 
 	private static final String DIALOG_NODE_NAME = "dialog";
-	private static final String DIALOG_BEGIN_ATTR_NAME = "begin";
+	private static final String BEGIN_ATTR_NAME = "begin";
 
 	private static final String DIALOGNODE_NODE_NAME = "dialog-node";
 
@@ -34,7 +34,7 @@ public class DialogXMLBuilder implements XMLBuilder {
 		if (node.getNodeName() != DIALOG_NODE_NAME)
 			throw new Exception();
 		
-		String begin_id = node.getAttributes().getNamedItem(DIALOG_BEGIN_ATTR_NAME).getTextContent();
+		String begin_id = node.getAttributes().getNamedItem(BEGIN_ATTR_NAME).getTextContent();
 		this.begin_node = xml.getElementById(begin_id);
 		
 		this.builder = createDialogBuilder(begin_node);
@@ -43,7 +43,7 @@ public class DialogXMLBuilder implements XMLBuilder {
 			if (child.getNodeName() == DIALOGNODE_NODE_NAME) {
 				if (child == begin_node)
 					continue;
-				addNodeToBuilder(builder, child);
+				addNodeToBuilder(child);
 			}
 		}
 	}
@@ -65,7 +65,7 @@ public class DialogXMLBuilder implements XMLBuilder {
 		return new DialogBuilder(id, text, answers, execute);
 	}
 
-	private static void addNodeToBuilder(DialogBuilder builder, Node node) {
+	private void addNodeToBuilder(Node node) {
 		String id = node.getAttributes().getNamedItem(ID_ATTR_NAME).getTextContent();
 		String text = null;
 		for (int i = 0; i < node.getChildNodes().getLength(); i++) {

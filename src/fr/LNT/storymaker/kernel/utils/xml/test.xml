@@ -23,21 +23,26 @@
     </script>
     <map begin="loc1">
         <location id="loc1">
-            <name></name>
-            <desc></desc>
-            <door id="door1" to="loc1"/>
+            <name>Piece 1</name>
+            <desc>Une piece nulle</desc>
+            <door id="door1" to="loc2"/>
+        </location>
+        <location id="loc2">
+            <name>Piece 2</name>
+            <desc>Une piece presque bien</desc>
+            <door id="door2" to="loc1"/>
         </location>
     </map>
     <items-list>
         <item id="key">
-            <name></name>
-            <desc></desc>
+            <name>Clef</name>
+            <desc>Une clef</desc>
         </item>
     </items-list>
     <characters-list>
-        <character id="Maria" location="">
-            <name></name>
-            <desc></desc>
+        <character id="Maria" location="loc1">
+            <name>Maria</name>
+            <desc>Beautiful Maria !</desc>
             <dialog id="mar_dia_1" begin="test1">
                 <dialog-node id="test1">
                     <text>Bonjour, ça va ?</text>

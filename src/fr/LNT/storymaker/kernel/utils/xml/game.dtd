@@ -15,7 +15,7 @@
     begin CDATA #REQUIRED
 >
 
-<!ELEMENT script-node 
+<!ELEMENT script-node
     (child*)
 >
 <!ATTLIST script-node  
@@ -62,6 +62,7 @@
 >
 <!ATTLIST item 
     id ID #REQUIRED
+    execute CDATA #IMPLIED
 >
 
 

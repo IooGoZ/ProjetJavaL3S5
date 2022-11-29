@@ -6,22 +6,22 @@ import java.util.List;
 
 import fr.LNT.storymaker.kernel.utils.NodeObject;
 
-public abstract class TreeBuilder {
+public class TreeBuilder {
 
 	protected HashMap<Object, List<Object>> obj2lst = new HashMap<>();
 
 	protected Object starter_object;
 
-	protected TreeBuilder(Object starter_object) {
+	public TreeBuilder(Object starter_object) {
 		this.obj2lst.put(starter_object, new ArrayList<>());
 		this.starter_object = starter_object;
 	}
 
-	protected void addNode(Object obj) {
+	public void addNode(Object obj) {
 		obj2lst.put(obj, new ArrayList<>());
 	}
 
-	protected void createUnilink(Object from, Object to) {
+	public void createUnilink(Object from, Object to) {
 		if (obj2lst.containsKey(to) && obj2lst.containsKey(to)) {
 			obj2lst.get(from).add(to);
 		} else {
@@ -30,7 +30,7 @@ public abstract class TreeBuilder {
 		}
 	}
 
-	protected void createBilink(Object obj1, Object obj2) {
+	public void createBilink(Object obj1, Object obj2) {
 		if (obj2lst.containsKey(obj1) && obj2lst.containsKey(obj2)) {
 			obj2lst.get(obj1).add(obj2);
 			obj2lst.get(obj2).add(obj1);
@@ -40,7 +40,7 @@ public abstract class TreeBuilder {
 		}
 	}
 
-	protected NodeObject build() {
+	public NodeObject build() {
 		HashMap<Object, NodeObject> obj2node = new HashMap<>();
 		for (Object obj : obj2lst.keySet()) {
 			obj2node.put(obj, new NodeObject(obj));
