@@ -8,12 +8,24 @@ import fr.LNT.storymaker.kernel.utils.Dialog;
 import fr.LNT.storymaker.kernel.utils.DialogNode;
 import fr.LNT.storymaker.kernel.utils.NodeObject;
 
+/**
+ * Allow to build a dialog
+ * @author LNT
+ *
+ */
 public class DialogBuilder extends TreeBuilder {
 
 	private HashMap<String, String> id2text = new HashMap<>();
 	private HashMap<String, String> id2command = new HashMap<>();
 	private HashMap<String, LinkedHashMap<String, String>> id2answers = new HashMap<>();
 
+	/**
+	 * Constructor of DialogBuilder
+	 * @param id Id of first dialog node
+	 * @param text Text of first dialog node
+	 * @param answers List of answer linked to redirection for the first dialog node
+	 * @param command Command of first dialog node
+	 */
 	public DialogBuilder(String id, String text, LinkedHashMap<String, String> answers, String command) {
 		super(id);
 		id2text.put(id, text);
@@ -21,6 +33,13 @@ public class DialogBuilder extends TreeBuilder {
 		id2command.put(id, command);
 	}
 
+	/**
+	 * Add dialog node to the builder
+	 * @param id Id of dialog node
+	 * @param text Text of dialog node
+	 * @param answers Answers of dialog node
+	 * @param command Command of dialog node
+	 */
 	public void addNode(String id, String text, LinkedHashMap<String, String> answers, String command) {
 		super.addNode(id);
 		id2text.put(id, text);
@@ -28,6 +47,10 @@ public class DialogBuilder extends TreeBuilder {
 		id2command.put(id, command);
 	}
 
+	/**
+	 * Build the dialog
+	 * @return Dialog that are built
+	 */
 	public Dialog buildDialog() {
 		HashMap<Object, NodeObject> obj2node = new HashMap<>();
 

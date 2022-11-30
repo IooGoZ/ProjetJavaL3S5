@@ -33,7 +33,7 @@
             <name>Piece 2</name>
             <text>Bienvenue dans la piece 2</text>
             <desc>Une piece presque bien</desc>
-            <door id="door2" to="loc1"/>
+            <door id="door2" to="loc1" execute="print text 1 / print text 2"/>
         </location>
     </map>
     <items-list>
@@ -47,7 +47,7 @@
             <name>Maria</name>
             <desc>Beautiful Maria !</desc>
             <dialog id="mar_dia_2" begin="noanswer1" available="sc-1">
-            	<dialog-node id="noanswer1" execute="script sc-3">
+            	<dialog-node id="noanswer1" execute="print text test">
                     <text>Je n'ai rien à dire...</text>
                 </dialog-node>
             </dialog>

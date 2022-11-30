@@ -1,7 +1,16 @@
 package fr.LNT.storymaker.kernel.commands;
 
+/**
+ * A command that can helped you
+ * @author LNT
+ *
+ */
 public class CommandHelp implements Command{
 
+	
+    /**
+     * Print all player available commands scpecs
+     */
     public void help()
     {
          System.out.println("GO <location> : Allows you to move to the arg location. A door to the arg location must exist so you can move. You can check by using 'LOOK Door' command.");
@@ -14,7 +23,14 @@ public class CommandHelp implements Command{
          System.out.println("TALK <Character> : Talk to a character.");
     }
     
-    
+    /**
+	 * Run the command
+	 * @param sender Instance of the sender
+	 * @param cmdName Name use to call the command
+	 * @param args Arguments of command
+	 * @return True if the command was completed
+	 */
+    @Override
     public boolean execute(Sender sender, String cmdName, String[] args)
     {
         help();

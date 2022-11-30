@@ -12,7 +12,7 @@
     (script-node+)
 >
 <!ATTLIST script 
-    begin CDATA #REQUIRED
+    begin IDREF #REQUIRED
 >
 
 <!ELEMENT script-node
@@ -33,7 +33,7 @@
     (location+)
 >
 <!ATTLIST map 
-    begin CDATA #REQUIRED
+    begin IDREF #REQUIRED
 >
 
 <!ELEMENT location 
@@ -47,8 +47,9 @@
 <!ELEMENT door EMPTY>
 <!ATTLIST door 
     id ID #REQUIRED
-    to CDATA #REQUIRED
-    key CDATA #IMPLIED
+    to IDREF #REQUIRED
+    key IDREF #IMPLIED
+    execute CDATA #IMPLIED
 >
 
 
@@ -76,7 +77,7 @@
 >
 <!ATTLIST character 
     id ID #REQUIRED
-    location CDATA #REQUIRED
+    location IDREF #REQUIRED
     available IDREFS #IMPLIED
 >
 
@@ -86,7 +87,7 @@
 >
 <!ATTLIST dialog 
     id ID #REQUIRED
-    begin CDATA #REQUIRED
+    begin IDREF #REQUIRED
     available IDREFS #IMPLIED
 >
 

@@ -3,14 +3,30 @@ package fr.LNT.storymaker.kernel.commands;
 import fr.LNT.storymaker.kernel.Game;
 import fr.LNT.storymaker.kernel.Player;
 
+/**
+ * A special command to manage the player health
+ * @author LNT
+ *
+ */
 public class SpecialCommandHealth implements Command {
 
 	private final Game game;
 
+	/**
+	 * Constructor of class SpecialCommandHealth
+	 * @param game Game instance is necessary
+	 */
 	public SpecialCommandHealth(Game game) {
 		this.game = game;
 	}
 	
+	/**
+	 * Run the command
+	 * @param sender Instance of the sender
+	 * @param cmdName Name use to call the command
+	 * @param args Arguments of command
+	 * @return True if the command was completed
+	 */
 	@Override
 	public boolean execute(Sender sender, String cmdName, String[] args) {
 		if (!(sender instanceof Player)) {
@@ -18,9 +34,9 @@ public class SpecialCommandHealth implements Command {
 				try {
 					int value = Integer.parseInt(args[0]);
 					if (cmdName.equalsIgnoreCase("health-set")) {
-						game.getCurrentPlayer().setHealth(value);
+						game.getPlayer().setHealth(value);
 					} else if (cmdName.equalsIgnoreCase("health-add")) {
-						game.getCurrentPlayer().addHealth(value);
+						game.getPlayer().addHealth(value);
 					}
 				} catch (NumberFormatException e) {
 					e.printStackTrace();
