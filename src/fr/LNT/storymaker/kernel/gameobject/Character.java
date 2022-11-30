@@ -1,26 +1,37 @@
 package fr.LNT.storymaker.kernel.gameobject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import fr.LNT.storymaker.kernel.story.Location;
 import fr.LNT.storymaker.kernel.utils.Dialog;
 
+/**
+ * Represent a non-player character
+ * @author LNT
+ *
+ */
 public class Character {
 
+	/**
+	 * Value to represent an id always available
+	 */
 	public static final String ALWAYS_AVAILABLE = "always";
-	private static final int DEFAULT_HEALTH = 20;
 
 	private final String name;
 	private final String desc;
 	private final Location room;
 	private final HashMap<String, Dialog> script2dialog;
-	private final List<Item> inventory = new ArrayList<>();
 	private final List<String> available;
 
-	private int health = DEFAULT_HEALTH; // damage during the fight with the main player
-
+	/**
+	 * Constructor of class Character
+	 * @param name Name of character
+	 * @param desc Description of character
+	 * @param room Location where the character is
+	 * @param available List of script nodes ids when the character is available
+	 * @param dialog Dialog associated with script node id
+	 */
 	public Character(String name, String desc, Location room, List<String> available, HashMap<String, Dialog> dialog) {
 		this.name = name;
 		this.desc = desc;
@@ -30,37 +41,38 @@ public class Character {
 		room.addCharacter(this);
 	}
 
+	/**
+	 * Check if player is available for specific script node id
+	 * @param script_id Script node id that must be verified
+	 * @return True if available
+	 */
 	public boolean isAvailable(String script_id) {
 		
 		return available.contains(script_id) || available.size() == 0;
 	}
-	
-	public boolean isInside(Item item) {
 
-		int len = this.inventory.size();
-		boolean res = false;
-
-		for (int i = 0; i < len; i++) {
-			if (this.inventory.get(i) == item) {
-				res = true;
-			}
-		}
-		return res;
-	}
-
-	public void giveItem(Item item) {
-		if (isInside(item))
-			this.inventory.remove(item);
-	}
-
+	/**
+	 * Get the name of character
+	 * @return Name of character
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * Get location of character
+	 * @return location of character
+	 */
 	public Location getLocation() {
 		return room;
 	}
 
+	
+	/**
+	 * Get the available dialog for specific value of script node id
+	 * @param script_id Script node id that must be verified
+	 * @return Dialog that is available or default
+	 */
 	public Dialog getCurrentDialog(String script_id) {
 		Dialog res = script2dialog.getOrDefault(script_id, null);
 		if (res == null)
@@ -68,14 +80,10 @@ public class Character {
 		return res;
 	}
 
-	public List<Item> getInventory() {
-		return inventory;
-	}
-
-	public int getHealth() {
-		return health;
-	}
-
+	/**
+	 * Get the description of character
+	 * @return Description of character
+	 */
 	public String getDescription() {
 		return desc;
 	}

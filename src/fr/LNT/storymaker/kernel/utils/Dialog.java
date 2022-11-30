@@ -5,14 +5,28 @@ import java.util.Scanner;
 import fr.LNT.storymaker.kernel.Game;
 import fr.LNT.storymaker.kernel.commands.Sender;
 
+/**
+ * Represent a dialog
+ * @author LNT
+ *
+ */
 public class Dialog extends TreeObject implements Sender {
 
 	private static final Scanner sc = Game.stdinScanner;
 
+	/**
+	 * Constructor of class Dialog
+	 * @param starter_node Node which start the tree
+	 */
 	public Dialog(DialogNode starter_node) {
 		super(starter_node);
 	}
 
+	/**
+	 * Convert an answer to an id
+	 * @param maxId
+	 * @return
+	 */
 	public int getAnswers(int maxId) {
 		int res = DialogNode.ANSWER_MIN - 1;
 		do {
@@ -26,18 +40,26 @@ public class Dialog extends TreeObject implements Sender {
 		return res;
 	}
 
-	public void execute() {
+	/**
+	 * Run the dialog
+	 * @param game game instance
+	 */
+	public void execute(Game game) {
 		boolean loop;
 		do {
 			DialogNode node = (DialogNode) super.current_node;
+			
+			if (node.getCommand()!=null)
+				game.executeCommand(this, node.getCommand());
+			
 			node.printNode();
 			loop = !isEndOfTree();
 
-			if (node.getMaxChildrensIndex() > 0) {
-				int answer_id = node.answerToChild(getAnswers(node.getMaxChildrensIndex()));
+			if (node.getChildrensLenght() > 0) {
+				int answer_id = node.answerToChild(getAnswers(node.getChildrensLenght()-1));
 				moveToChild(answer_id);
-			} else if (node.getMaxChildrensIndex() == 0) {
-				moveToChild(node.getMaxChildrensIndex());
+			} else if (node.getChildrensLenght() == 1) {
+				moveToChild(0);
 			}
 		} while (loop);
 	}

@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+/**
+ * Represent a part of dialog, with a text and some answers
+ * @author LNT
+ *
+ */
 public class DialogNode extends NodeObject {
 
 	private final String text;
@@ -16,6 +21,13 @@ public class DialogNode extends NodeObject {
 
 	private static final int ANSWER_TO_CHILD_ERROR = -1;
 
+	/**
+	 * Constructor of class DialogNode
+	 * @param id Id of the node
+	 * @param text Text of the node
+	 * @param answers List answers link to the redirection
+	 * @param command Command that must executed when the dialog node is execute
+	 */
 	public DialogNode(String id, String text, LinkedHashMap<String, String> answers, String command) {
 		super(id);
 
@@ -25,6 +37,11 @@ public class DialogNode extends NodeObject {
 
 	}
 
+	/**
+	 * Convert an answer to child
+	 * @param answer answer id
+	 * @return return the index of node answer
+	 */
 	public int answerToChild(int answer) {
 		List<String> answerTarget = new ArrayList<>(answers.values());
 		String child_id = answerTarget.get(answer - ANSWER_MIN);
@@ -39,6 +56,9 @@ public class DialogNode extends NodeObject {
 		return ANSWER_TO_CHILD_ERROR;
 	}
 
+	/**
+	 * Convert object to string 
+	 */
 	@Override
 	public String toString() {
 		StringBuilder strbld = new StringBuilder(text);
@@ -53,24 +73,43 @@ public class DialogNode extends NodeObject {
 		return strbld.toString();
 	}
 
+	/**
+	 * Print the object
+	 */
 	public void printNode() {
 		System.out.println(toString());
 	}
 
+	
+	/**
+	 * Get the child with id
+	 */
 	@Override
 	public DialogNode getChildren(int id) {
 		return (DialogNode) super.getChildren(id);
 	}
 
+	/**
+	 * Get the id of dialog node
+	 */
 	@Override
 	public String getNodeValue() {
-		return (String) node_value;
+		return (String) super.node_value;
 	}
 
+	
+	/**
+	 * Add children to the node
+	 * @param child Children that must be added
+	 */
 	public void addChildren(DialogNode child) {
 		super.addChildren(child);
 	}
 
+	/**
+	 * Get the command
+	 * @return command
+	 */
 	public String getCommand() {
 		return command;
 	}

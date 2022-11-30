@@ -10,8 +10,16 @@ import org.w3c.dom.Node;
 import fr.LNT.storymaker.kernel.gameobject.Item;
 import fr.LNT.storymaker.kernel.story.Location;
 
+/**
+ * Allows to instantiate all location from xml
+ * @author LNT
+ *
+ */
 public class MapXMLBuilder implements XMLBuilder {
 	
+	/**
+	 * Name of input xml node
+	 */
 	public static final String MAP_NODE_NAME = "map";
 	private static final String MAP_BEGIN_ATTR_NAME = "begin";
 	private static final String LOCATION_NODE_NAME = "location";
@@ -21,6 +29,7 @@ public class MapXMLBuilder implements XMLBuilder {
 	private static final String DOOR_NODE_NAME = "door";
 	private static final String ID_ATTR_NAME = "id";
 	private static final String TO_ATTR_NAME = "to";
+	private static final String EXECUTE_ATTR_NAME = "execute";
 	private static final String KEY_ATTR_NAME = "key";
 	private static final String ITEM_ATTR_NAME = "item";
 	
@@ -31,6 +40,7 @@ public class MapXMLBuilder implements XMLBuilder {
 	private final HashMap<String, Location> id2Location = new HashMap<>();
 	
 	private final HashMap<String, String> door2locFrom = new HashMap<>();
+	private final HashMap<String, String> door2cmd = new HashMap<>();
 	private final HashMap<String, String> door2locTo = new HashMap<>();
 	private final HashMap<String, Item> door2key = new HashMap<>();
 	
@@ -38,6 +48,13 @@ public class MapXMLBuilder implements XMLBuilder {
 	private final Node default_node;
 	private final Node begin_node;
 	
+	/**
+	 * Constructor of MapXMLBuilder
+	 * @param xml Input XML document
+	 * @param node Input XML node
+	 * @param id2item Item list
+	 * @throws Exception If the input node is invalid 
+	 */
 	public MapXMLBuilder(Document xml, Node node, HashMap<String, Item> id2item) throws Exception {
 		if (node.getNodeName() != MAP_NODE_NAME)
 			throw new Exception();
@@ -66,7 +83,7 @@ public class MapXMLBuilder implements XMLBuilder {
 			Location from = id2Location.get(door2locFrom.get(door_id));
 			Location to = id2Location.get(door2locTo.get(door_id));
 			Item key = door2key.getOrDefault(door_id, null);
-			from.addExit(to, key);
+			from.addExit(to, door2cmd.get(door_id), key);
 		}
 		
 		return first_location;
@@ -93,6 +110,9 @@ public class MapXMLBuilder implements XMLBuilder {
 					String door_id = node.getAttributes().getNamedItem(ID_ATTR_NAME).getTextContent();
 					door2locFrom.put(door_id, id);
 					door2locTo.put(door_id, child.getAttributes().getNamedItem(TO_ATTR_NAME).getTextContent());
+					Node execute_node = child.getAttributes().getNamedItem(EXECUTE_ATTR_NAME);
+					if (execute_node != null)
+						door2cmd.put(door_id, execute_node.getTextContent());
 					Node key_node = child.getAttributes().getNamedItem(KEY_ATTR_NAME);
 					if (key_node != null)
 						door2key.put(door_id, id2item.get(key_node.getTextContent()));

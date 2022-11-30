@@ -6,8 +6,16 @@ import org.w3c.dom.Node;
 
 import fr.LNT.storymaker.kernel.gameobject.Item;
 
+/**
+ * Allows to instantiate all items from xml
+ * @author LNT
+ *
+ */
 public class ItemsXMLBuilder implements XMLBuilder{
 	
+	/**
+	 * Name of input xml node
+	 */
 	public static final String ITEMS_LIST_NODE_NAME = "items-list";
 	private static final String ITEM_NODE_NAME = "item";
 	
@@ -19,12 +27,21 @@ public class ItemsXMLBuilder implements XMLBuilder{
 	private final Node default_node;
 	private final HashMap<String, Item> id2item = new HashMap<>();
 
+	/**
+	 * Constructor of ItemsXMLBuilder
+	 * @param xml Input XML document
+	 * @param node Input XML node
+	 * @throws Exception If the input node is invalid 
+	 */
 	public ItemsXMLBuilder(Node node) throws Exception {
 		if (node.getNodeName() != ITEMS_LIST_NODE_NAME)
 			throw new Exception();
 		this.default_node = node;
 	}
 	
+	/**
+	 * Build the Items list
+	 */
 	@Override
 	public HashMap<String, Item> build() {
 		for (int i = 0; i < this.default_node.getChildNodes().getLength(); i++) {

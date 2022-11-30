@@ -3,12 +3,9 @@ package fr.LNT.storymaker.kernel.utils.xml;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.StringReader;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -29,6 +26,11 @@ import fr.LNT.storymaker.kernel.gameobject.Character;
 
 //Inspiré par : https://mkyong.com/java/how-to-read-xml-file-in-java-dom-parser/
 
+/**
+ * Allows to instantiate a game from xml
+ * @author LNT
+ *
+ */
 public class GameXMLBuilder implements XMLBuilder {
 
 	private static final String DEFAULT_XML_PATHNAME = "fr/LNT/storymaker/kernel/utils/xml/test.xml";
@@ -46,6 +48,13 @@ public class GameXMLBuilder implements XMLBuilder {
 	private final Node map_node;
 	private final Node items_node;
 
+	/**
+	 * Constructor of GameXMLBuilder
+	 * @param file Input XML file (if null use default resource)
+	 * @throws ParserConfigurationException XML don't respect the DTD
+	 * @throws SAXException Cannot parse file
+	 * @throws IOException Cannot open file
+	 */
 	public GameXMLBuilder(File file) throws ParserConfigurationException, SAXException, IOException {
 
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newDefaultInstance();
@@ -84,17 +93,26 @@ public class GameXMLBuilder implements XMLBuilder {
 		this.items_node = game.getElementsByTagName(ItemsXMLBuilder.ITEMS_LIST_NODE_NAME).item(FIRST_INDEX);
 	}
 
+	/**
+	 * Constructor of GameXMLBuilder (use default resource)
+	 * @throws ParserConfigurationException XML don't respect the DTD
+	 * @throws SAXException Cannot parse file
+	 * @throws IOException Cannot open file
+	 */
 	public GameXMLBuilder() throws ParserConfigurationException, SAXException, IOException {
 		this(null);
 	}
 
+	
+	/**
+	 * Build the game
+	 */
 	@Override
 	public Game build() {
 
 		Script script = null;
 		HashMap<String, Item> id2items = null;
 		Location first_location = null;
-		List<Character> characters;
 
 		try {
 			ScriptXMLBuilder script_builder = new ScriptXMLBuilder(script_node);
@@ -104,7 +122,7 @@ public class GameXMLBuilder implements XMLBuilder {
 			MapXMLBuilder map_builder = new MapXMLBuilder(xml, map_node, id2items);
 			first_location = map_builder.build();
 			CharactersXMLBuilder characters_builder = new CharactersXMLBuilder(xml, characters_node, map_builder);
-			characters = characters_builder.build();
+			characters_builder.build();
 
 		} catch (Exception e) {
 			System.err.println("La lecture du fichier XML a échouée.");

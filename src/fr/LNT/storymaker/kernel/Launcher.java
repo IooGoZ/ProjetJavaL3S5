@@ -1,4 +1,4 @@
-package fr.LNT.storymaker.debug;
+package fr.LNT.storymaker.kernel;
 
 import java.io.IOException;
 
@@ -6,10 +6,9 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
-import fr.LNT.storymaker.kernel.Game;
 import fr.LNT.storymaker.kernel.utils.xml.GameXMLBuilder;
 
-public class Debug {
+public class Launcher {
 	public static void main(String[] args) {
 		try {
 			GameXMLBuilder game_builder = new GameXMLBuilder();

@@ -2,19 +2,23 @@ package fr.LNT.storymaker.kernel.utils.xml;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import fr.LNT.storymaker.kernel.story.Script;
-import fr.LNT.storymaker.kernel.utils.builders.DialogBuilder;
 import fr.LNT.storymaker.kernel.utils.builders.TreeBuilder;
 
+/**
+ * Allows to instantiate the script from xml
+ * @author LNT
+ *
+ */
 public class ScriptXMLBuilder implements XMLBuilder {
 	
+	/**
+	 * Name of input xml node
+	 */
 	public static final String SCRIPT_NODE_NAME = "script";
 	private static final String BEGIN_ATTR_NAME = "begin";
 	
@@ -28,7 +32,11 @@ public class ScriptXMLBuilder implements XMLBuilder {
 	private final String begin_id;
 	private final HashMap<String, List<String>> id2childs = new HashMap<>();
 	
-
+	/**
+	 * Constructor of CharactersXMLBuilder
+	 * @param node Input XML node
+	 * @throws Exception If the input node is invalid 
+	 */
 	public ScriptXMLBuilder(Node node) throws Exception {
 		if (node.getNodeName() != SCRIPT_NODE_NAME)
 			throw new Exception();
@@ -50,6 +58,9 @@ public class ScriptXMLBuilder implements XMLBuilder {
 		id2childs.put(id, childs);
 	}
 	
+	/**
+	 * Build the script
+	 */
 	@Override
 	public Script build() {
 		for (int i = 0; i < this.default_node.getChildNodes().getLength(); i++) {
