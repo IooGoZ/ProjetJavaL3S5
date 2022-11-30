@@ -11,6 +11,7 @@ public class CommandParser {
 	}
 
 	public boolean parse(Sender sender, String cmd) {
+		
 		String[] cmd_tab = cmd.split(" ");
 		String[] args = new String[cmd_tab.length];
 		for (int i = 1; i < cmd_tab.length; i++)

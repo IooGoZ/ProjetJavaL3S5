@@ -5,6 +5,7 @@
         <script-node id="sc-1">
             <child child-id="sc-2"/>
             <child child-id="sc-4"/>
+            <child child-id="sc-3"/>
         </script-node>
         <script-node id="sc-2">
             <child child-id="sc-1"/>
@@ -42,10 +43,15 @@
         </item>
     </items-list>
     <characters-list>
-        <character id="Maria" location="loc1">
+        <character id="Maria" location="loc1" available="sc-1 sc-3">
             <name>Maria</name>
             <desc>Beautiful Maria !</desc>
-            <dialog id="mar_dia_1" begin="test1">
+            <dialog id="mar_dia_2" begin="noanswer1" available="sc-1">
+            	<dialog-node id="noanswer1" execute="script sc-3">
+                    <text>Je n'ai rien à dire...</text>
+                </dialog-node>
+            </dialog>
+            <dialog id="mar_dia_1" begin="test1" available="sc-3">
                 <dialog-node id="test1">
                     <text>Bonjour, ça va ?</text>
                     <answer redirect="test2">ça va !</answer>

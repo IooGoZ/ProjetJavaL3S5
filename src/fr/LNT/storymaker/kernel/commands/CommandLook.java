@@ -13,7 +13,7 @@ public class CommandLook implements Command {
 	}
 
 	public void lookAround() {
-		System.out.println(this.location.toString());
+		this.location.printDescription(game.getCurrentScriptPosition());
 	}
 
 	public boolean lookClosely(String[] names) {

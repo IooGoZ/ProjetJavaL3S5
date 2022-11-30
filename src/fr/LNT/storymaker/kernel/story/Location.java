@@ -28,17 +28,20 @@ public class Location {
 	}
 
 	// ---- Method() ---- //
-	@Override
-	public String toString() {
+	public void printDescription(String sc_node) {
 		String res = "";
 		res += "Location's name : ";
 		res += this.name;
 		res += "\n";
 		res += "Location's description : ";
 		res += this.description;
-
-		return res;
-
+		res += "\n";
+		res += "Location's character :";
+		for (Character character : characters)
+			if (character.isAvailable(sc_node))
+				res += " " + character.getName();
+		
+		System.out.println(res);
 	}
 	
 	public void printTextIfAvailable() {
@@ -127,7 +130,7 @@ public class Location {
 
 	public void printDoors()
 	{
-		this.exits.forEach(exit -> System.out.println("From : " + exit.whereAmI() + "\nTo : " + exit.whereDoIGo() + "\n"));
+		this.exits.forEach(exit -> System.out.println("From : " + exit.whereAmI().getName() + "\nTo : " + exit.whereDoIGo().getName() + "\n"));
 	}
 	
 	public void addExit(Location to, Item key) {
@@ -157,12 +160,11 @@ public class Location {
 		return this.exits;
 	}
 
-	public List<Character> getAvailableCharacters(String script_id) {
-		List<Character> res = new ArrayList<>();
+	public Character getAvailableCharacter(String script_id, String name) {
 		for (Character character : characters)
-			if (character.isAvailable(script_id))
-				res.add(character);
-		return this.characters;
+			if (character.isAvailable(script_id) && character.getName().equalsIgnoreCase(name))
+				return character;
+		return null;
 	}
 
 	public List<Item> getItems() {

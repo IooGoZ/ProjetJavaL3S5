@@ -1,7 +1,5 @@
 package fr.LNT.storymaker.kernel.commands;
 
-import java.util.List;
-
 import fr.LNT.storymaker.kernel.Game;
 import fr.LNT.storymaker.kernel.story.Location;
 import fr.LNT.storymaker.kernel.gameobject.Character;
@@ -21,18 +19,13 @@ public class CommandTalk implements Command {
 		Location location = game.getCurrentLocation();
 		if (Command.argsLenght(args) > 0) {
 			String name = Command.concatArgs(args);
-			List<Character> characters = location.getAvailableCharacters(game.getCurrentScriptPosition());
-			for (Character character : characters)
-				if (character.getName().equalsIgnoreCase(name)) {
+			Character character = location.getAvailableCharacter(game.getCurrentScriptPosition(), name);
+				if (character != null) {
 					character.getCurrentDialog(game.getCurrentScriptPosition()).execute();
 					return true;
 				}
 		}
-		System.out.println("Available characters : ");
-		List<Character> characters = location.getAvailableCharacters(game.getCurrentScriptPosition());
-		for (Character character : characters)
-			System.out.println(character.getName());
-		
+		System.out.println("This characters is not available.");
 		return false;
 	}
 

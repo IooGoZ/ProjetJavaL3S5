@@ -25,6 +25,8 @@ public class TreeBuilder {
 		if (obj2lst.containsKey(to) && obj2lst.containsKey(to)) {
 			obj2lst.get(from).add(to);
 		} else {
+			System.out.println(from);
+			System.out.println(to);
 			System.err.println("createUnilink error : try to link unregistred object.");
 			System.exit(-1);
 		}

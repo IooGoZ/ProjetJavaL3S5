@@ -35,12 +35,12 @@ public class Player implements Sender {
 		this.inventory.remove(item);
 	}
 	
-	public void lostHealth(int damage) {
-		this.health -= damage;
+	public void addHealth(int damage) {
+		this.health += damage;
 	}
 	
-	public void gainHealth (int point) {
-		this.health += point;
+	public void setHealth (int point) {
+		this.health = point;
 	}
 	
 	public void printStatePlayer() {

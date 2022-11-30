@@ -11,6 +11,9 @@ import fr.LNT.storymaker.kernel.commands.CommandParser;
 import fr.LNT.storymaker.kernel.commands.CommandTake;
 import fr.LNT.storymaker.kernel.commands.CommandTalk;
 import fr.LNT.storymaker.kernel.commands.Sender;
+import fr.LNT.storymaker.kernel.commands.SpecialCommandGive;
+import fr.LNT.storymaker.kernel.commands.SpecialCommandHealth;
+import fr.LNT.storymaker.kernel.commands.SpecialCommandScript;
 import fr.LNT.storymaker.kernel.gameobject.ClosedDoor;
 import fr.LNT.storymaker.kernel.gameobject.Door;
 import fr.LNT.storymaker.kernel.gameobject.Item;
@@ -26,14 +29,22 @@ public class Game {
 			"help",
 			"look",
 			"take",
-			"talk"
+			"talk",
+			"script",
+			"give",
+			"health-set",
+			"health-add"
 	};
 	private final Command[] cmds = {
 			new CommandGo(this),
 			new CommandHelp(),
 			new CommandLook(this),
 			new CommandTake(this),
-			new CommandTalk(this)
+			new CommandTalk(this),
+			new SpecialCommandScript(this),
+			new SpecialCommandGive(this),
+			new SpecialCommandHealth(this),
+			new SpecialCommandHealth(this)
 	};
 
 	private final String gameName;
@@ -78,7 +89,7 @@ public class Game {
 	}
 	
 	public Item getItemById(String id) {
-		return id2Item.get(id);
+		return id2Item.getOrDefault(id, null);
 	}
 	
 	public String getCurrentScriptPosition() {
