@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
-import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -22,7 +21,6 @@ import fr.LNT.storymaker.kernel.Player;
 import fr.LNT.storymaker.kernel.gameobject.Item;
 import fr.LNT.storymaker.kernel.story.Location;
 import fr.LNT.storymaker.kernel.story.Script;
-import fr.LNT.storymaker.kernel.gameobject.Character;
 
 //Inspiré par : https://mkyong.com/java/how-to-read-xml-file-in-java-dom-parser/
 
@@ -33,7 +31,7 @@ import fr.LNT.storymaker.kernel.gameobject.Character;
  */
 public class GameXMLBuilder implements XMLBuilder {
 
-	private static final String DEFAULT_XML_PATHNAME = "fr/LNT/storymaker/kernel/utils/xml/test.xml";
+	private static final String DEFAULT_XML_PATHNAME = "fr/LNT/storymaker/kernel/utils/xml/Script.xml";
 	private static final String DEFAULT_DTD_NAME = "game.dtd";
 	private static final String DEFAULT_DTD_PATHNAME = "fr/LNT/storymaker/kernel/utils/xml/game.dtd";
 
