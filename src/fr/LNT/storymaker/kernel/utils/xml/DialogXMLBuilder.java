@@ -10,6 +10,11 @@ import org.w3c.dom.NodeList;
 import fr.LNT.storymaker.kernel.utils.Dialog;
 import fr.LNT.storymaker.kernel.utils.builders.DialogBuilder;
 
+/**
+ * Allows to instantiate a dialog from xml
+ * @author LNT
+ *
+ */
 public class DialogXMLBuilder implements XMLBuilder {
 
 	private static final String DIALOG_NODE_NAME = "dialog";
@@ -30,6 +35,12 @@ public class DialogXMLBuilder implements XMLBuilder {
 	private final DialogBuilder builder;
 	private final Element begin_node;
 
+	/**
+	 * Constructor of DialogXMLBuilder
+	 * @param xml Input XML document
+	 * @param node Input XML node
+	 * @throws Exception If the input node is invalid 
+	 */
 	public DialogXMLBuilder(Document xml, Node node) throws Exception {
 		if (node.getNodeName() != DIALOG_NODE_NAME)
 			throw new Exception();
@@ -48,6 +59,9 @@ public class DialogXMLBuilder implements XMLBuilder {
 		}
 	}
 
+	/**
+	 * Build the dialog
+	 */
 	@Override
 	public Dialog build() {
 		return builder.buildDialog();

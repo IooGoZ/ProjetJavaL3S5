@@ -10,8 +10,16 @@ import org.w3c.dom.Node;
 import fr.LNT.storymaker.kernel.gameobject.Item;
 import fr.LNT.storymaker.kernel.story.Location;
 
+/**
+ * Allows to instantiate all location from xml
+ * @author LNT
+ *
+ */
 public class MapXMLBuilder implements XMLBuilder {
 	
+	/**
+	 * Name of input xml node
+	 */
 	public static final String MAP_NODE_NAME = "map";
 	private static final String MAP_BEGIN_ATTR_NAME = "begin";
 	private static final String LOCATION_NODE_NAME = "location";
@@ -40,6 +48,13 @@ public class MapXMLBuilder implements XMLBuilder {
 	private final Node default_node;
 	private final Node begin_node;
 	
+	/**
+	 * Constructor of MapXMLBuilder
+	 * @param xml Input XML document
+	 * @param node Input XML node
+	 * @param id2item Item list
+	 * @throws Exception If the input node is invalid 
+	 */
 	public MapXMLBuilder(Document xml, Node node, HashMap<String, Item> id2item) throws Exception {
 		if (node.getNodeName() != MAP_NODE_NAME)
 			throw new Exception();

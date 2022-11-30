@@ -13,6 +13,9 @@ import fr.LNT.storymaker.kernel.utils.Dialog;
  */
 public class Character {
 
+	/**
+	 * Value to represent an id always available
+	 */
 	public static final String ALWAYS_AVAILABLE = "always";
 
 	private final String name;

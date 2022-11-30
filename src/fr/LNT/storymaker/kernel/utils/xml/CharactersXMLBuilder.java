@@ -12,8 +12,16 @@ import fr.LNT.storymaker.kernel.story.Location;
 import fr.LNT.storymaker.kernel.utils.Dialog;
 import fr.LNT.storymaker.kernel.gameobject.Character;
 
+/**
+ * Allows to instantiate all characters from xml
+ * @author LNT
+ *
+ */
 public class CharactersXMLBuilder implements XMLBuilder {
 
+	/**
+	 * Name of input xml node
+	 */
 	public static final String CHARACTER_LIST_NODE_NAME = "characters-list";
 	private static final String CHARACTER_NODE_NAME = "character";
 	private static final String NAME_NODE_NAME = "name";
@@ -33,6 +41,13 @@ public class CharactersXMLBuilder implements XMLBuilder {
 	
 	private final Node default_node;
 	
+	/**
+	 * Constructor of CharactersXMLBuilder
+	 * @param xml Input XML document
+	 * @param node Input XML node
+	 * @param map_builder Instance of MapBuilder to link character with there location
+	 * @throws Exception If the input node is invalid 
+	 */
 	public CharactersXMLBuilder(Document xml, Node node, MapXMLBuilder map_builder) throws Exception {
 		if (node.getNodeName() != CHARACTER_LIST_NODE_NAME)
 			throw new Exception();
@@ -45,6 +60,9 @@ public class CharactersXMLBuilder implements XMLBuilder {
 		
 	}
 	
+	/**
+	 * Build the characters
+	 */
 	@Override
 	public List<Character> build() {
 		for (int i = 0; i < this.default_node.getChildNodes().getLength(); i++) {
