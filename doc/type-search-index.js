@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"fr.LNT.storymaker.kernel.utils.xml","l":"XMLBuilder"}];updateSearchResults();
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"fr.LNT.storymaker.kernel","l":"Launcher"}];updateSearchResults();

@@ -2,7 +2,7 @@ package fr.LNT.storymaker.kernel.utils;
 
 /**
  * Represent an object graph (or tree)
- * @author Tom
+ * @author LNT
  *
  */
 public abstract class TreeObject {

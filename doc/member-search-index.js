@@ -1,1 +1,1 @@
-memberSearchIndex = [{"p":"fr.LNT.storymaker.kernel.utils.xml","c":"XMLBuilder","l":"build()"}];updateSearchResults();
+memberSearchIndex = [{"p":"fr.LNT.storymaker.kernel","c":"Launcher","l":"Launcher()","u":"%3Cinit%3E()"},{"p":"fr.LNT.storymaker.kernel","c":"Launcher","l":"main(String[])","u":"main(java.lang.String[])"}];updateSearchResults();
