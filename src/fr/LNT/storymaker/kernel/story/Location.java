@@ -195,7 +195,9 @@ public class Location {
 	 */
 	public void printDoors()
 	{
-		this.exits.forEach(exit -> System.out.println("From : " + exit.whereAmI().getName() + "\nTo : " + exit.whereDoIGo().getName() + "\n"));
+		for (Door exit : this.exits) {
+			System.out.println("From : " + exit.whereAmI().getName() + "\nTo : " + exit.whereDoIGo().getName() + "\n");
+		}
 	}
 	
 	/**

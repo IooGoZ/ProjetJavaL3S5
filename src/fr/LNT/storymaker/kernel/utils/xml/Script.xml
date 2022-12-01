@@ -70,9 +70,9 @@
 			<text>Teacher : Blah blah blah... project... \n Your eyes are fluttering. Fatigue invades you. Slowly, the room around you disappears. You must recognize that Jovo's classes have never been your strength....as evidenced by your grades in the last test. You feel your eyelids become heavier and heavier \n - BAM ! \n You make up with a start ! Around you, the students have already started to leave the amphitheater. It was their noisy discussionsthat got you out of sleep. Very quickly, you are the only one still sitting. The teacher glares at you from his desk. He propably wants to go on a lunch break or maybe he noticed that you slept the entire lecture... You look away. \n On your right, you notice a young long-haired girl who are smiling at you. On your left, there is a bearded boy hypnotised by his phone. The exit of the amphitheater are calling you : it's the freedom's door. You finally decide to get up.
 			</text>
 			<desc>It is a place where the students assist to their lecture. It is also a cold place without any warmth.</desc>
-			<door id="door1" to="Hall" key="sheet" execute="script sc_6 / script sc_8 / if sheet = 0 then script sc_2 else script sc_3"/>
+			<door id="door1" to="Hall" key="sheet" execute="script sc_6 / script sc_8 / if sheet = 0 then script sc_2 % print Teacher : What about your papers, young man ! You have to listen in lecture. else script sc_3"/>
 		</location>
-		<location id="Hall">
+		<location id="Hall" items="Hpts">
 			<name>Hall</name>
 			<text>You are in the main place of the game : the hall of the building
 			</text>
@@ -112,7 +112,7 @@
 			<text>You are in the secret room. Good luck leaving this scary place... \n The only way to exit it is to use the precious key. If you do not have it then your life won't be long...
 			</text>
 			<desc>It is a secret place somewhere...</desc>
-			<door id="door10" to="Hall" key="key" execute="if key = 1 then script sc_15 % print You leave this secret place ! You find a lot of health's points and they are full % var health add 100 else script sc_14 % var health set 0 % print Unfortunately you have no way to escape this place... After hours of agony, you die alone on the cold floor..."/>
+			<door id="door10" to="Hall" key="key" execute="if key = 1 then script sc_15 % print You leave this secret place ! You find a lot of health's points and they are full % var health add 100 else script sc_14 % var health set 0 % end print Unfortunately you have no way to escape this place... After hours of agony, you die alone on the cold floor..."/>
 		</location>
 	</map>
 	<items-list>
@@ -135,15 +135,11 @@
 			<desc/>
 			<dialog id="T_dia1" begin="T1_1" available="sc_1">
 				<dialog-node id="T1_1" execute="var sheet set 0 / var health set 70 / script sc_2">
-					<text>The closer you get to him, the more nasty his look becomes...It's a bad idea. You turn around.</text>
+					<text>The closer you get to him, the more nasty his look becomes...It's a bad idea. You turn around. You should leave the amphitheater discretly...</text>
 				</dialog-node>
 			</dialog>
-			<dialog id="T_dia2" begin="T2_1_1" available="sc_2">
-				<dialog-node id="T2_1_1">
-					<text>Teacher : What about your papers, young man ! You have to listen in lecture.</text>
-					<answer redirect="T2_2_2">Take the document.</answer>
-				</dialog-node>
-				<dialog-node id="T2_2_2" execute="give sheet / script sc_3">
+			<dialog id="T_dia2" begin="T2_2_1" available="sc_2">
+				<dialog-node id="T2_2_1" execute="give sheet / script sc_3">
 					<text>You go down the amphitheater and take the document on the teacher's desk. It describes exactly the differents steps of the project : you are learning that you must find a partner. You immediately start to find one. \n The teacher leaves the amphitheater by grumbling something about the students these days... \n You have one sheet in your possession and you need 4 to complete the project.</text>
 				</dialog-node>
 			</dialog>
@@ -153,7 +149,7 @@
 					<answer redirect="T3_2">/* rendre le project */</answer>
 					<answer redirect="T3_3">Keep it</answer>
 				</dialog-node>
-				<dialog-node id="T3_2" execute="end if health >= 80 then print You obtain a great grade ! then print You are quite disappointed about your grade">
+				<dialog-node id="T3_2" execute="if health >= 80 then end You obtain a great grade ! then end You are quite disappointed about your grade.">
 					<text>You give your project to the teacher. You really hope to have a good mark because you work so hard on it. After leaving your project on his desk, you leave the amphitheater with finger crossed.</text>
 				</dialog-node>
 				<dialog-node id="T3_3">

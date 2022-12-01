@@ -85,7 +85,7 @@ public class DialogXMLBuilder implements XMLBuilder {
 		for (int i = 0; i < node.getChildNodes().getLength(); i++) {
 			Node child = node.getChildNodes().item(i);
 			if (child.getNodeName() == TEXT_NODE_NAME) {
-				text = child.getTextContent().replace(" \\n ", "\n");
+				text = child.getTextContent().replace("\\n", "\n");
 				break;
 			}
 		}
@@ -103,7 +103,7 @@ public class DialogXMLBuilder implements XMLBuilder {
 		for (int i = 0; i < childrens.getLength(); i++) {
 			Node child = childrens.item(i);
 			if (child.getNodeName() == ANSWER_NODE_NAME) {
-				String answer = child.getTextContent().replace(" \\n ", "\n");
+				String answer = child.getTextContent().replace("\\n", "\n");
 				Node redirect_attr = child.getAttributes().getNamedItem(ANSWER_REDIRECT_ATTR_NAME);
 				String redirect = null;
 				if (redirect_attr != null)

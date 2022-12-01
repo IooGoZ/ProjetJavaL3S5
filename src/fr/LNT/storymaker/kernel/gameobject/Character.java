@@ -86,4 +86,19 @@ public class Character {
 	public String getDescription() {
 		return desc;
 	}
+	
+	
+	/**
+	 * To string
+	 */
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("Character's name : ");
+		sb.append(name);
+		sb.append("\n");
+		sb.append("Character's description : ");
+		sb.append(desc);
+		return sb.toString();
+	}
 }

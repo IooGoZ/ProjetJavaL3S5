@@ -14,7 +14,6 @@ import fr.LNT.storymaker.kernel.commands.Sender;
 import fr.LNT.storymaker.kernel.commands.SpecialCommandDev;
 import fr.LNT.storymaker.kernel.commands.SpecialCommandEnd;
 import fr.LNT.storymaker.kernel.commands.SpecialCommandGive;
-import fr.LNT.storymaker.kernel.commands.SpecialCommandHealth;
 import fr.LNT.storymaker.kernel.commands.SpecialCommandPrint;
 import fr.LNT.storymaker.kernel.commands.SpecialCommandScript;
 import fr.LNT.storymaker.kernel.gameobject.ClosedDoor;
@@ -33,19 +32,19 @@ public class Game {
 
 	public static final Scanner stdinScanner = new Scanner(System.in);
 
-	private final String[] cmdName = { "go", "help", "look", "take", "talk", "script", "give", "health-set",
-			"health-add", "print", "var", "if", "end" };
+	private final String[] cmdName = { "go", "help", "look", "take", "talk", "script", "give", "print", "var", "if", "end"};
 
 	private SpecialCommandDev specialCommandDev = new SpecialCommandDev(this);
 	private final Command[] cmds = { new CommandGo(this), new CommandHelp(), new CommandLook(this),
-			new CommandTake(this), new CommandTalk(this), new SpecialCommandScript(this), new SpecialCommandGive(this),
-			new SpecialCommandHealth(this), new SpecialCommandHealth(this), new SpecialCommandPrint(), specialCommandDev, specialCommandDev, new SpecialCommandEnd(this) };
+			new CommandTake(this), new CommandTalk(this), new SpecialCommandScript(this), new SpecialCommandGive(this), new SpecialCommandPrint(), specialCommandDev, specialCommandDev, new SpecialCommandEnd(this) };
 
 	private final String gameName;
 	private final Script script;
 	private Location location;
 	private final Player player;
 	private final HashMap<String, Item> id2Item;
+	
+	private static final boolean DEBUG = true;
 
 	private final CommandParser parser = new CommandParser();
 
@@ -85,13 +84,12 @@ public class Game {
 	 * @param cmds   Commands was separated by " / "
 	 * @return Return if commmand was be completed
 	 */
-	public boolean executeCommand(Sender sender, String cmds) {
+	public void executeCommand(Sender sender, String cmds) {
 		String[] cmd_tab = cmds.split(" / ");
 		for (String cmd : cmd_tab)
-			if (!parser.parse(sender, cmd))
-				return false;
-
-		return true;
+			if (!parser.parse(sender, cmd)) {
+				if (DEBUG) System.err.println("Invalid command : " + cmd);
+			}
 	}
 
 	/**
@@ -104,7 +102,7 @@ public class Game {
 			System.out.print("Command>>");
 			String cmd = stdinScanner.nextLine();
 			if (!parser.parse(player, cmd))
-				System.err.println("The command was not completed.");
+				if (DEBUG) System.err.println("The command was not completed.");
 		}
 	}
 
