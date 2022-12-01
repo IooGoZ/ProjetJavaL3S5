@@ -47,7 +47,7 @@
             <name>Maria</name>
             <desc>Beautiful Maria !</desc>
             <dialog id="mar_dia_2" begin="noanswer1" available="sc-1">
-            	<dialog-node id="noanswer1" execute="print text test">
+            	<dialog-node id="noanswer1" execute="end Bonjour">
                     <text>Je n'ai rien à dire...</text>
                 </dialog-node>
             </dialog>

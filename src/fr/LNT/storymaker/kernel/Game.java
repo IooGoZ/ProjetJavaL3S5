@@ -11,6 +11,8 @@ import fr.LNT.storymaker.kernel.commands.CommandParser;
 import fr.LNT.storymaker.kernel.commands.CommandTake;
 import fr.LNT.storymaker.kernel.commands.CommandTalk;
 import fr.LNT.storymaker.kernel.commands.Sender;
+import fr.LNT.storymaker.kernel.commands.SpecialCommandDev;
+import fr.LNT.storymaker.kernel.commands.SpecialCommandEnd;
 import fr.LNT.storymaker.kernel.commands.SpecialCommandGive;
 import fr.LNT.storymaker.kernel.commands.SpecialCommandHealth;
 import fr.LNT.storymaker.kernel.commands.SpecialCommandPrint;
@@ -31,18 +33,13 @@ public class Game {
 
 	public static final Scanner stdinScanner = new Scanner(System.in);
 
-	/**
-	 * Names of availables commands.
-	 */
 	private final String[] cmdName = { "go", "help", "look", "take", "talk", "script", "give", "health-set",
-			"health-add", "print" };
+			"health-add", "print", "var", "if", "end" };
 
-	/**
-	 * Instances of availables commands
-	 */
+	private SpecialCommandDev specialCommandDev = new SpecialCommandDev(this);
 	private final Command[] cmds = { new CommandGo(this), new CommandHelp(), new CommandLook(this),
 			new CommandTake(this), new CommandTalk(this), new SpecialCommandScript(this), new SpecialCommandGive(this),
-			new SpecialCommandHealth(this), new SpecialCommandHealth(this), new SpecialCommandPrint() };
+			new SpecialCommandHealth(this), new SpecialCommandHealth(this), new SpecialCommandPrint(), specialCommandDev, specialCommandDev, new SpecialCommandEnd(this) };
 
 	private final String gameName;
 	private final Script script;
@@ -111,6 +108,11 @@ public class Game {
 		}
 	}
 
+	public void finish() {
+		this.isFinished = true;
+	}
+	
+	
 	/**
 	 * Get an id with his id
 	 * 

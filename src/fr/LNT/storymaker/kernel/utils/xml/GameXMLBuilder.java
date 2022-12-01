@@ -31,7 +31,7 @@ import fr.LNT.storymaker.kernel.story.Script;
  */
 public class GameXMLBuilder implements XMLBuilder {
 
-	private static final String DEFAULT_XML_PATHNAME = "fr/LNT/storymaker/kernel/utils/xml/Script.xml";
+	private static final String DEFAULT_XML_PATHNAME = "fr/LNT/storymaker/kernel/utils/xml/test.xml";
 	private static final String DEFAULT_DTD_NAME = "game.dtd";
 	private static final String DEFAULT_DTD_PATHNAME = "fr/LNT/storymaker/kernel/utils/xml/game.dtd";
 
