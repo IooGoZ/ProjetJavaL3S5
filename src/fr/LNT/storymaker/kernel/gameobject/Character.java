@@ -47,7 +47,6 @@ public class Character {
 	 * @return True if available
 	 */
 	public boolean isAvailable(String script_id) {
-		
 		return available.contains(script_id) || available.size() == 0;
 	}
 

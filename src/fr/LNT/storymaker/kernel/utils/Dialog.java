@@ -55,11 +55,9 @@ public class Dialog extends TreeObject implements Sender {
 			node.printNode();
 			loop = !isEndOfTree();
 
-			if (node.getChildrensLenght() > 0) {
+			if (node.getChildrensLenght() != 0) {
 				int answer_id = node.answerToChild(getAnswers(node.getChildrensLenght()-1));
 				moveToChild(answer_id);
-			} else if (node.getChildrensLenght() == 1) {
-				moveToChild(0);
 			}
 		} while (loop);
 	}

@@ -22,7 +22,7 @@ import fr.LNT.storymaker.kernel.gameobject.Item;
 import fr.LNT.storymaker.kernel.story.Location;
 import fr.LNT.storymaker.kernel.story.Script;
 
-//Inspiré par : https://mkyong.com/java/how-to-read-xml-file-in-java-dom-parser/
+//Inspired by : https://mkyong.com/java/how-to-read-xml-file-in-java-dom-parser/
 
 /**
  * Allows to instantiate a game from xml
@@ -57,6 +57,8 @@ public class GameXMLBuilder implements XMLBuilder {
 
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newDefaultInstance();
 		dbf.setValidating(true);
+		dbf.setIgnoringElementContentWhitespace(true);
+		dbf.setNamespaceAware(true);
 
 		DocumentBuilder db = dbf.newDocumentBuilder();
 

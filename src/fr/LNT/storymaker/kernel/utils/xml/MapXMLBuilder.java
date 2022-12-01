@@ -101,10 +101,10 @@ public class MapXMLBuilder implements XMLBuilder {
 					name = child.getTextContent();
 					break;
 				case TEXT_NODE_NAME :
-					text = child.getTextContent();
+					text = child.getTextContent().replace(" \\n ", "\n");
 					break;
 				case DESCRIPTION_NODE_NAME :
-					desc = child.getTextContent();
+					desc = child.getTextContent().replace(" \\n ", "\n");
 					break;
 				case DOOR_NODE_NAME :
 					String door_id = node.getAttributes().getNamedItem(ID_ATTR_NAME).getTextContent();
