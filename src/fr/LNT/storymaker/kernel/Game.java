@@ -6,10 +6,13 @@ import java.util.Scanner;
 import fr.LNT.storymaker.kernel.commands.Command;
 import fr.LNT.storymaker.kernel.commands.CommandGo;
 import fr.LNT.storymaker.kernel.commands.CommandHelp;
+import fr.LNT.storymaker.kernel.commands.CommandInventory;
 import fr.LNT.storymaker.kernel.commands.CommandLook;
 import fr.LNT.storymaker.kernel.commands.CommandParser;
+import fr.LNT.storymaker.kernel.commands.CommandQuit;
 import fr.LNT.storymaker.kernel.commands.CommandTake;
 import fr.LNT.storymaker.kernel.commands.CommandTalk;
+import fr.LNT.storymaker.kernel.commands.CommandUse;
 import fr.LNT.storymaker.kernel.commands.Sender;
 import fr.LNT.storymaker.kernel.commands.SpecialCommandDev;
 import fr.LNT.storymaker.kernel.commands.SpecialCommandEnd;
@@ -32,11 +35,11 @@ public class Game {
 
 	public static final Scanner stdinScanner = new Scanner(System.in);
 
-	private final String[] cmdName = { "go", "help", "look", "take", "talk", "script", "give", "print", "var", "if", "end"};
+	private final String[] cmdName = { "go", "help", "look", "take", "talk", "script", "give", "print", "var", "if", "end", "use", "quit", "inventory"};
 
 	private SpecialCommandDev specialCommandDev = new SpecialCommandDev(this);
 	private final Command[] cmds = { new CommandGo(this), new CommandHelp(), new CommandLook(this),
-			new CommandTake(this), new CommandTalk(this), new SpecialCommandScript(this), new SpecialCommandGive(this), new SpecialCommandPrint(), specialCommandDev, specialCommandDev, new SpecialCommandEnd(this) };
+			new CommandTake(this), new CommandTalk(this), new SpecialCommandScript(this), new SpecialCommandGive(this), new SpecialCommandPrint(), specialCommandDev, specialCommandDev, new SpecialCommandEnd(this), new CommandUse(this), new CommandQuit(), new CommandInventory(this) };
 
 	private final String gameName;
 	private final Script script;
