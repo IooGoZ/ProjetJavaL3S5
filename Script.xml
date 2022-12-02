@@ -1,0 +1,430 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE game SYSTEM "game.dtd">
+<game name="Project">
+	<script begin="sc_1">
+		<script-node id="sc_1">
+			<child child-id="sc_2"/>
+		</script-node>
+		<script-node id="sc_2">
+			<child child-id="sc_3"/>
+		</script-node>
+		<script-node id="sc_3">
+			<child child-id="sc_4"/>
+			<child child-id="sc_5"/>
+			<child child-id="sc_6"/>
+		</script-node>
+		<script-node id="sc_4">
+			<child child-id="sc_7"/>
+		</script-node>
+		<script-node id="sc_5">
+			<child child-id="sc_7"/>
+		</script-node>
+		<script-node id="sc_6">
+			<child child-id="sc_8"/>
+		</script-node>
+		<script-node id="sc_7">
+			<child child-id="sc_8"/>
+		</script-node>
+		<script-node id="sc_8">
+			<child child-id="sc_9"/>
+			<child child-id="sc_10"/>
+			<child child-id="sc_11"/>
+			<child child-id="sc_12"/>
+		</script-node>
+		<script-node id="sc_9">
+			<child child-id="sc_13"/>
+			<child child-id="sc_16"/>
+		</script-node>
+		<script-node id="sc_10">
+			<child child-id="sc_18"/>
+		</script-node>
+		<script-node id="sc_11">
+			<child child-id="sc_17"/>
+		</script-node>
+		<script-node id="sc_12">
+			<child child-id="sc_18"/>
+		</script-node>
+		<script-node id="sc_13">
+			<child child-id="sc_14"/>
+		</script-node>
+		<script-node id="sc_14"/>
+		<script-node id="sc_15">
+			<child child-id="sc_18"/>
+		</script-node>
+		<script-node id="sc_16">
+			<child child-id="sc_17"/>
+			<child child-id="sc_18"/>
+		</script-node>
+		<script-node id="sc_17">
+			<child child-id="sc_18"/>
+		</script-node>
+		<script-node id="sc_18">
+			<child child-id="sc_19"/>
+		</script-node>
+		<script-node id="sc_19">
+		</script-node>
+	</script>
+	<map begin="Amphitheater">
+		<location id="Amphitheater">
+			<name>Amphitheater</name>
+			<text>
+				Teacher : Blah blah blah... project... \n Your eyes are fluttering. Fatigue invades you. Slowly, the room around you disappears. You must recognize that Jovo's classes have never been your strength....as evidenced by your grades in the last test. You feel your eyelids become heavier and heavier \n - BAM ! \n You make up with a start ! Around you, the students have already started to leave the amphitheater. It was their noisy discussionsthat got you out of sleep. Very quickly, you are the only one still sitting. The teacher glares at you from his desk. He propably wants to go on a lunch break or maybe he noticed that you slept the entire lecture... You look away. \n On your right, you notice a young long-haired girl who are smiling at you. On your left, there is a bearded boy hypnotised by his phone. The exit of the amphitheater are calling you : it's the freedom's door. You finally decide to get up.
+			</text>
+			<desc>It is a place where students attend class. It is also a cold place without any warmth.</desc>
+			<door id="door1" to="Hall" key="sheet" execute="script sc_6 / script sc_8 / if sheet = 0 then script sc_2 % print Teacher : What about your papers, young man ! You have to listen in class. else script sc_3"/>
+		</location>
+		<location id="Hall" items="Hpts">
+			<name>Hall</name>
+			<text>
+				You are in the main room of the game : the building hall
+			</text>
+			<desc>
+				It is a place where the students can wait for their lessons. They can also drink coffee from the coffee machine.
+			</desc>
+			<door id="door2" to="Amphitheater" execute="script sc_12"/>
+			<door id="door3" to="Classroom" execute="script sc_10"/>
+			<door id="door4" to="Secretary" execute="script sc_11"/>
+			<door id="door5" to="SmokerZone" execute="script sc_9"/>
+		</location>
+		<location id="Classroom">
+			<name>Classroom</name>
+			<text>
+				You walk into the classroom. Maria, as the perfect student, sits in the first row. She is ready for the beginning of the class. Hurry up, it starts in a few minutes.
+			</text>
+			<desc>
+				In the classroom, students can attend classes and learn new things.
+			</desc>
+			<door id="door6" to="Hall" execute="script sc_8"/>
+		</location>
+		<location id="Secretary">
+			<name>Secretary's office</name>
+			<text>
+				You are in the secretariat. Talk to the secretary if you need anything.
+			</text>
+			<desc>
+				If you need information or health's points, you can come here. The secretary will be happy to help you if you ask her politely of course...
+			</desc>
+			<door id="door7" to="Hall" execute="script sc_8"/>
+		</location>
+		<location id="SmokerZone">
+			<name>Smoker Zone</name>
+			<text>You are in the smoker zone. Be careful with your lungs !</text>
+			<desc>
+				The students who smoke come here. At every break time, this place is filled with toxic smoke...
+			</desc>
+			<door id="door8" to="Hall" execute="script sc_8"/>
+			<door id="door9" to="SecretRoom" execute="script sc_13"/>
+		</location>
+		<location id="SecretRoom">
+			<name>Secret Room</name>
+			<text>
+				You are in the secret room. Good luck leaving this scary place... \n The only way to get out of here is to use the precious key. If you do not have it then your life won't be very long...
+			</text>
+			<desc>It is a secret place somewhere...</desc>
+			<door id="door10" to="Hall" key="key" execute="if key = 1 then script sc_15 % print You leave this secret room and your health's points return to the maximum with this renewed hope ! % var health add 100 else script sc_14 % var health set 0 % end print Unfortunately you have no way to escape this place... After hours of agony, you die alone on the cold floor..."/>
+		</location>
+	</map>
+	<items-list>
+		<item id="Hpts">
+			<name>Health point</name>
+			<desc/>
+		</item>
+		<item id="key">
+			<name>The Key</name>
+			<desc>This is the only key to escape from the room.</desc>
+		</item>
+		<item id="sheet">
+			<name>Project's sheet</name>
+			<desc>The project contains 4 sheets.</desc>
+		</item>
+	</items-list>
+	<characters-list>
+		<character id="Teacher1" location="Amphitheater" available="sc_1 sc_2 sc_19">
+			<name>Teacher</name>
+			<desc/>
+			<dialog id="T_dia1" begin="T1_1" available="sc_1">
+				<dialog-node id="T1_1" execute="var sheet set 0 / var health set 70 / script sc_2">
+					<text>The closer you get to him, the more nasty his look becomes...It's a bad idea. You turn around. You should leave the amphitheater discretly...</text>
+				</dialog-node>
+			</dialog>
+			<dialog id="T_dia2" begin="T2_2_1" available="sc_2">
+				<dialog-node id="T2_2_1" execute="give sheet / script sc_3">
+					<text>You go down the amphitheater and take the document on the teacher's desk. It describes exactly the differents steps of the project : you are learning that you must find a partner. You immediately start to find one. \n The teacher leaves the amphitheater by grumbling something about the students these days... \n You have one sheet in your possession and you need 4 to complete the project.</text>
+				</dialog-node>
+			</dialog>
+			<dialog id="T_dia3" begin="T3_1" available="sc_19">
+				<dialog-node id="T3_1">
+					<text>Teacher : blah blah blah.... \n Now I will pick up your projects. Put them on my desk. \n You stand up and take your project in your hands. You link it briefly while you are going down the stairs. Your hands start to shake, you are not sure about this project... You look around you, your partner Maki is not here so you can not ask him his opinion. What can you do ?</text>
+					<answer redirect="T3_2">Return the project</answer>
+					<answer redirect="T3_3">Keep it</answer>
+				</dialog-node>
+				<dialog-node id="T3_2" execute="if health >= 80 then end print You have obtained a great grade ! else end print You are a little disappointed with your grade but it is still a good grade.">
+					<text>You give your project to the teacher. You really hope to get a good grade because you worked hard on it. After placing it on his desk, you walk out the amphitheater with your fingers crossed.</text>
+				</dialog-node>
+				<dialog-node id="T3_3">
+					<text>You decide to keep it. After all, the teacher won't be mad at you for giving it back the new day... This extra day would allow you to perfect your project \n Teacher : Oh wait ! If you do not give me back your project today then it will be a 0. \n Maybe you should re-think about your previous decision...</text>
+					<answer redirect="T3_2">/* rendre your project */</answer>
+				</dialog-node>
+			</dialog>
+		</character>
+		<character id="Teacher2" location="Classroom" available="sc_10">
+			<name>Teacher</name>
+			<desc/>
+			<dialog id="T2_dia2" begin="T2_1" available="sc_10">
+				<dialog-node id="T2_1">
+					<text>You decide to attend the class. It will be beneficial for you. You are sure of that. \n Except Maria sitting in the first row, the other seats are empty. \n Where do you want to sit ?</text>
+					<answer redirect="T2_2">Sit in the first row</answer>
+					<answer redirect="T2_3">Sit in the middle row</answer>
+					<answer redirect="T2_4">Sit in the last row</answer>
+				</dialog-node>
+				<dialog-node id="T2_2">
+					<text>You choose to sit in the first row, this is a good choice. It will allow you to get every information the teacher will give. The chair next to Maria is empty... \n You : Hey Maria ! Can I sit next to you ? \n Maria : Of course you can ! It has been so long since we last talked... \n - Yeah I know... By the way, I wanted to apologize for changing my project's partner after accepting your proposal... \n - Do not be worried about this, I am not mad at you or at least not anymore... Besides, I found a project's partner so I am not alone... \n Maria smiles at you. You are truly relieved that Maria does not blame you anymore. \n Now you can completely focus on the lesson... \n \n Teacher : The class will begin in a few minutes. For the students who do not want to be there, I will ask you to leave the classroom and for the others, I will ask you to stop the chatter... \n</text>
+					<answer redirect="T2_5">Stay focus the whole class</answer>
+				</dialog-node>
+				<dialog-node id="T2_3">
+					<text>You choose to sit in the middle row, it may not be the best choice but you did not want to sit in the first row... The teacher would have been too close to you... \n You are not worried, you will still be focused on the class... \n Teacher : The class will begin in a few minutes. For the students who do not want to be there, I will ask you to leave the classroom and for the others, I will ask you to stop the chatter...\n</text>
+					<answer redirect="T2_5">Stay focus the whole class</answer>
+					<answer redirect="T2_6">Go into his thoughts</answer>
+				</dialog-node>
+				<dialog-node id="T2_4">
+					<text>You choose to sit in the last row. Behind others, the teacher will not see you and you will be able to do everything except listen to him... \n Teacher : The class will begin in a few minutes. For the students who do not want to be there, I will ask you to leave the classroom and for the others, I will ask you to stop the chatter...\n</text>
+					<answer redirect="T2_6">Try to stay focused during class</answer>
+				</dialog-node>
+				<dialog-node id="T2_5" execute="give sheet / var project add 1 / print You add a page to your inventory ! / if sheet >= 4 then script sc_19 else script sc_8">
+					<text>You managed to stay focused on the whole class. Every information given by the teacher were caught by your brain. You are proud of yourself. \n Teacher : The class is over but before leaving, I have something useful for your project. \n You received another page to complete your project. Attending the class was definitely a good thing !</text>
+				</dialog-node>
+				<dialog-node id="T2_6">
+					<text>The class is finally over... You tried to stay focused but you have to admit that your gaze was more focused on outside than on the black board in front of you. You heard some information on a paper given by the teacher but when you realized the class was over, the teacher was already gone. Let's hope you won't regret it later...</text>
+				</dialog-node>
+			</dialog>
+		</character>
+		<character id="Maria1" location="Amphitheater" available="sc_1 sc_2 sc_3 sc_4">
+			<name>Maria</name>
+			<desc>She is a beautiful long-haired girl and you are lucky, she is in the same class than you.</desc>
+			<dialog id="M_dia1" begin="M1_1" available="sc_1 sc_2">
+				<dialog-node id="M1_1">
+					<text>Long-haired girl : Hello ! My name is Maria. I saw that you were sleeping during class. You should go to the teacher because you missed his explanations.</text>
+				</dialog-node>
+			</dialog>
+			<dialog id="M_dia2" begin="M2_1" available="sc_3 sc_4">
+				<dialog-node id="M2_1">
+					<text>Maria : Do you have a pair for the project ? Otherwise we could get together if you want.</text>
+					<answer redirect="M2_2">Accept her request</answer>
+					<answer redirect="M2_3">Reject her request</answer>
+				</dialog-node>
+				<dialog-node id="M2_2" execute="script sc_4">
+					<text>Maria smiles at you and you have the impression that the entire universe is contained in her dimples.\n She takes your hand. \n Maria : I am really happy that you want to work with me ! \n It is your turn to blush. Embarrased, you tell her that you are happy too. Maria smiles at you again. You decide to leave the amphitheater together and come back home. You live next to each other, so why not make the way together ?... \n Suddenly, a young man approch you with a nice smile on his face. \n Young man : Hey classmate. I was wondering, do you have a partner for the project ?.... Because if you do not have one then we can be together... \n After his long and non-sense speech, your head is turning. \n</text>
+					<answer redirect="M2_5">Accept his request</answer>
+					<answer redirect="M2_4">Refuse his request</answer>
+				</dialog-node>
+				<dialog-node id="M2_3">
+					<text>You are alone and you read the project again... You absolutely need a partner.</text>
+				</dialog-node>
+				<dialog-node id="M2_4" execute="script sc_7">
+					<text>What !? You do not want to be with me... Why ?...</text>
+					<answer redirect="M2_5">I already have a partner</answer>
+					<answer redirect="M2_5">I do not want to be with you</answer>
+					<answer redirect="M2_6">I was joking. Let's do the project together</answer>
+				</dialog-node>
+				<dialog-node id="M2_5" execute="script sc_7">
+					<text>Come on, it will be fun. Are you really sure you do not want to be with me ?</text>
+					<answer redirect="M2_4">Yes</answer>
+					<answer redirect="M2_6">No</answer>
+				</dialog-node>
+				<dialog-node id="M2_6" execute="script sc_8">
+					<text>You accept Maki's request. Maki hugs you and then says see you tomorrow. Here is someone who will make a reliable partner. Happy with yourself, you go home whistling.</text>
+				</dialog-node>
+			</dialog>
+		</character>
+		<character id="Zack1" location="Amphitheater" available="sc_1 sc_2 sc_3 sc_5">
+			<name>Zack</name>
+			<desc>He is a bearded man in the same class than you.</desc>
+			<dialog id="Z_dia1" begin="Z1_1" available="sc_1 sc_2">
+				<dialog-node id="Z1_1">
+					<text>Bearded man : Hi ! I am Zack. How was your nap ?</text>
+				</dialog-node>
+			</dialog>
+			<dialog id="Z_dia2" begin="Z2_1" available="sc_3 sc_5">
+				<dialog-node id="Z2_1">
+					<text>Do you want to be my partner for the project ?</text>
+					<answer redirect="Z2_2">Accept his request</answer>
+					<answer redirect="Z2_3">Reject his request</answer>
+				</dialog-node>
+				<dialog-node id="Z2_2" execute="script sc_5">
+					<text>You accept his request. He seems to be happy. Immediately, he goes to join his friends and disappears from your sight. You try to follow him but he was faster than you and you lost him. You will propably never see him again and your last decision was a terrible mistake. \n Suddenly, a young man approch you with a nice smile on his face. \n Young man : You should not have accepted his request ! He won't do anything on the project and you are going to do everything by yourself. Come with me. Besides, I already did a similar project so it is going to be so easy. \n - Oh... I am Maki by the way.</text>
+					<answer redirect="Z2_4">Accept his request</answer>
+					<answer redirect="Z2_4">Accept Maki's request</answer>
+				</dialog-node>
+				<dialog-node id="Z2_3" execute="script sc_3">
+					<text>You are alone and you read the project again... You absolutely need a partner.</text>
+				</dialog-node>
+				<dialog-node id="Z2_4" execute="script sc_8" >
+					<text>You accept Maki's request and you are so happy to be free from Zack. Maki hugs you and then says see you tomorrow. Here is someone who will make a reliable partner. Happy with yourself, you go home whistling.</text>
+				</dialog-node>
+			</dialog>
+		</character>
+
+		<character id="Zack2" location="SmokerZone" available="sc_9 sc_16 sc_18">
+			<name>Zack</name>
+			<desc/>
+			<dialog id="Z2_dia2" begin="Z3_1" available="sc_9 sc_16 sc_18">
+				<dialog-node id="Z3_1">
+					<text>You see Zack in the smoker zone. You get closer to him with the hope that maybe he knows where are the missing pages. \n Zack : I have nothing to tell you...</text>
+				</dialog-node>
+			</dialog>
+		</character>
+
+		<character id="Maki1" location="Hall" available="sc_6 sc_8">
+			<name>Maki</name>
+			<desc/>
+			<dialog id="Mk_dia1" begin="Mk1_1" available="sc_6 sc_8">
+				<dialog-node id="Mk1_1">
+					<text>You go out the amphitheater and you arrive in the hall of the building. A lots of students are chatting. You will find a partner here. As soon as this thought comes in your mind, a young man who seems to be a little bit too excited approch you : \n Young man : Hey classmate. I was wondering, do you have a partner for the project ?.... Because if you do not have one then we can be together. \n After his long and non-sense speech, your head is turning. You do not know if it is due to the smoke of his electronic cigarette or due to the lots of information he gave you. You finally understand that he want to be your project partner.</text>
+					<answer redirect="Mk1_2">Accept his request</answer>
+					<answer redirect="Mk1_1">Refuse his request</answer>
+				</dialog-node>
+				<dialog-node id="Mk1_2" execute="script sc_8">
+					<text>You accept Maki's request with a confused mind. After this, he leaves the building. You decide to go home to take a rest. After all, your mission to find a partner was a success so you can have a little break.</text>
+				</dialog-node>
+			</dialog>
+		</character>
+		<character id="Maki2" location="SmokerZone" available="sc_9 sc_16">
+			<name>Maki</name>
+			<desc/>
+			<dialog id="Mk_dia2" begin="Mk2_1" available="sc_9 sc_16">
+				<dialog-node id="Mk2_1">
+					<text>Maki is in the smoker zone as always, you get closer to him. \n Maki : What's up dude ? \n You : Good \n</text>
+					<answer redirect="Mk2_2">Leave the conversation</answer>
+					<answer redirect="Mk2_3">Did you work on the project ?</answer>
+				</dialog-node>
+				<dialog-node id="Mk2_2">
+					<text>Maki : Okay see you later</text>
+				</dialog-node>
+				<dialog-node id="Mk2_3">
+					<text>Maki : Yeah do not be worried about this. \n You : I'm serious... \n Maki : I did not start yet but trust me I will work on it soon.</text>
+					<answer redirect="Mk2_3">Yell at him</answer>
+					<answer redirect="Mk2_5">Okay I trust you</answer>
+				</dialog-node>
+				<dialog-node id="Mk2_5">
+					<text>Maki : You should go to see the secretary, I heard that she might have a paper to complete our project...</text>
+				</dialog-node>
+			</dialog>
+		</character>
+		<character id="Maki3" location="SmokerZone" available="sc_18">
+			<name>Maki</name>
+			<desc/>
+			<dialog id="Mk_dia3" begin="Mk3_1" available="sc_18">
+				<dialog-node id="Mk3_1">
+					<text>The project's delivery date is coming soon. Unfortunately, you have to get back the paper made by Maki. You gather your strength because confront him won't be easy. \n You : I am here to get back your paper... \n Maki : What paper ? \n - The page you were supposed to do... you know for the project \n - I see... \n - .... \n - I am joking, of course I have it. Did you doubt about it ? \n</text>
+					<answer redirect="Mk3_2">A little bit</answer>
+					<answer redirect="Mk3_2">Of course !</answer>
+					<answer redirect="Mk3_3">Not at all</answer>
+				</dialog-node>
+				<dialog-node id="Mk3_2" execute="var add -10 / print You lose 10 points of health because of him...">
+					<text>Maki : Seriously ?! I told you to trust me... so trust me... \n - Remind me why are you here ? \n You sigh... How is it possible to have a memory so short...</text>
+					<answer redirect="Mk3_4">I am here for the project's page</answer>
+					<answer>I forgot...</answer>
+				</dialog-node>
+				<dialog-node id="Mk3_3">
+					<text>Maki : You are the best partner ! Of course you were right to trust me. \n So now, do you want me to give you my project's page ?</text>
+					<answer redirect="Mk3_4">Yes I want it</answer>
+				</dialog-node>
+				<dialog-node id="Mk3_4" execute="give sheet / var sheet add 1 / if sheet = 4 then script sc_19 else script script_8">
+					<text>Mika finally give you his work. You read what he did and you are impressed by it. You are happy by the fact that Maki was your project's partner because his work is great.</text>
+				</dialog-node>
+			</dialog>
+		</character>
+		<character id="Woman" location="Secretary" available="sc_11 sc_17">
+			<name>Secretary</name>
+			<desc>She helps students when she can...</desc>
+			<dialog id="S_dia1" begin="S1_1" available="sc_11" >
+				<dialog-node id="S1_1">
+					<text>You are about to enter in the secretary's office. What do you want to do ?</text>
+					<answer redirect="S1_2">Knock at the door before entering</answer>
+					<answer redirect="S1_10">Entering without knocking</answer>
+				</dialog-node>
+				<dialog-node id="S1_2">
+					<text>Secretary : Hello. How are you ?</text>
+					<answer redirect="S1_3">Great</answer>
+					<answer redirect="S1_4">Not so good</answer>
+				</dialog-node>
+				<dialog-node id="S1_3">
+					<text>Secretary : It is the perfect day to be happy. \n - So tell me what can I do for you ?</text>
+					<answer redirect="S1_5">I need something</answer>
+					<answer redirect="S1_6">I just wanted to talk with you</answer>
+				</dialog-node>
+				<dialog-node id="S1_4">
+					<text>Secretary : Do not be worried, it will be better tomorrow. \n - So tell me what can I do for you ?</text>
+					<answer redirect="S1_5">I need something</answer>
+					<answer redirect="S1_6">I just wanted to talk with you</answer>
+				</dialog-node>
+				<dialog-node id="S1_6">
+					<text>Secretary : Oh ! That's nice. You can come back whenever you need.</text>
+				</dialog-node>
+				<dialog-node id="S1_5">
+					<text>Secretary : I have several items. What do you need ?</text>
+					<answer redirect="S1_7">Health's points</answer>
+					<answer redirect="S1_8">Project's sheet</answer>
+				</dialog-node>
+				<dialog-node id="S1_7" execute="give Hpts / var health add 40">
+					<text>Secretary : As you ask politely, I give you these health's points. You will need them. \n You receive 40 health's points. \n You : Thank you. </text>
+				</dialog-node>
+				<dialog-node id="S1_8">
+					<text>Secretary : Oh I see. Why do you think I have a sheet for the project ?</text>
+					<answer redirect="S1_9">I heard it somewhere</answer>
+					<answer redirect="S1_9">It is just luck</answer>
+				</dialog-node>
+				<dialog-node id="S1_9" execute="give sheet / var sheet add 1 / print You receive a new page to complete your project">
+					<text>Secretary : Well, you are right. I have a project's sheet and it is yours now</text>
+				</dialog-node>
+				<dialog-node id="S1_10">
+					<text>Secretary : What are these manners young man ! \n Do you really think that's a good behaviour ? I do not think so...</text>
+					<answer redirect="S1_11">Apologize yourself</answer>
+					<answer redirect="S1_12">Do not apologize</answer>
+				</dialog-node>
+				<dialog-node id="S1_11">
+					<text>You apologize for your disrespectful behaviour. The secretary seems to relax a little bit. \n Secretary : Hmm... tell me why are you here and maybe I will help you ...</text>
+					<answer redirect="S1_5">I need something</answer>
+					<answer redirect="S1_6">I just wanted to talk to you</answer>
+				</dialog-node>
+				<dialog-node id="S1_12">
+					<text>You do not want to apologize yourself. The secretary grins, she seems angrier than before. You think she won't help you for anything and maybe you are right... \n Secretary : First you come without knocking at the door and now you refuse to apologize for this. I won't give you what you want, come later ! \n You leave her office...</text>
+				</dialog-node>
+			</dialog>
+			<dialog id="S_dia2" begin="S2_1_1" available="sc_17">
+				<dialog-node id="S2_1_1">
+					<text>Maki, your project's partner talked about a mystery key. You are now looking at it. A rumor says that the key is in the secretary's office. You knock at the door. The door slowly opens but everything is dark inside. She is not there... \n What do you want to do ?</text>
+					<answer redirect="S2_3">Come in anyway</answer>
+					<answer redirect="S2_2">Come back later</answer>
+				</dialog-node>
+				<dialog-node id="S2_2">
+					<text>You are frightening to enter in her office without her consent. If Maki was there, he would not hesitate to enter but you are too pure for this. You will come back later... when she will be available.</text>
+				</dialog-node>
+				<dialog-node id="S2_3">
+					<text>You absolutely want this key and you know it is in this room. You have no choice. You quietly enter in the room and close the door behind you. The key could be everywhere and you do not know where to start.</text>
+					<answer redirect="S2_4">Start with the desk</answer>
+					<answer redirect="S2_5">Start with the shelf</answer>
+				</dialog-node>
+				<dialog-node id="S2_4" execute="give key / if sheet >= 4 then script sc_19 else script script_8">
+					<text>You start with the desk but there is a lot of paper on it. It is really messy. You check every drawers. Nothing... Suddenly, a shiny object captures your gaze. You lean down to see better and then with twinkling eyes, you take the key gently. \n You have the key in your inventory.</text>
+				</dialog-node>
+				<dialog-node id="S2_5">
+					<text>You start with the shelf. It contains hundreds of books. Unfortunately your reseach sucks... The only thing that's almost interesting is private information about your teacher... Maybe you could use it to get a bonus point on your project...</text>
+					<answer redirect="S2_6">Now check the desk</answer>
+				</dialog-node>
+				<dialog-node id="S2_6" execute="give key /if sheet >= 4 then script sc_19 else script script_8">
+					<text>The desk is no messy that you do not know where to start... You check every drawers. Nothing... Suddenly, a shiny object captures your gaze. You lean down to see better and then with twinkling eyes, you take the key gently. \n You have the key in your inventory.</text>
+				</dialog-node>
+			</dialog>
+		</character>
+		<character id="Stranger" location="Amphitheater" available="sc_12">
+			<name>Unknown girl</name>
+			<desc/>
+			<dialog id="U_dia1" begin="U1_1" available="sc_12">
+				<dialog-node id="U1_1" execute="if sheet = 4 then script sc_19 else script script_8">
+					<text>From upstairs, you have a good view on the amphitheater. You notice a girl sitting in the first row. You never saw this girl but you are a good person and you do want her to feel alone. You wonder why and decide to approach her. \n You : Hey are you okay ?... \n Unknown girl : Leave me alone, I do not need you ! I just want to be alone ! \n</text>
+				</dialog-node>
+			</dialog>
+		</character>
+	</characters-list>
+</game>
