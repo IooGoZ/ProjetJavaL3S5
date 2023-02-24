@@ -47,7 +47,7 @@ public class Game {
 	private final Player player;
 	private final HashMap<String, Item> id2Item;
 	
-	private static final boolean DEBUG = true;
+	private static final boolean DEBUG = false;
 
 	private final CommandParser parser = new CommandParser();
 
